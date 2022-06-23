@@ -36,7 +36,10 @@ import java.util.Random;
 public class ReqDAO {
     
      private Connection con;
-
+ static String fornecedor;
+ static String[] arquivos;
+ static int xcount;
+ static int position[];
 
     public ReqDAO() {
         this.con = new ConnectionFactory().getConnection();
@@ -227,12 +230,20 @@ public class ReqDAO {
     
     }
     
-    public void gerarxml12(Dadoss12 dados12, String IndicadorRetificacao, String TipoAmbiente) throws IOException{
-         Random random = new Random();
+    public void gerarxml12(List<Dadoss12> lista, String IndicadorRetificacao, String TipoAmbiente) throws IOException{  
+        
+  int x;
+  
+  
+     for(x = 0; x < lista.size(); x++){
+     
+         
+          Random random = new Random();
      int numero = random.nextInt(9);  
      verificarPasta();
+
  
-String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 = "", item4 = "", item5 = "", item6 = "", item7 = "", item8 = "", item9 = "";    
+String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 = "", item4 = "", item5 = "", item6 = "", item7 = "", item8 = "", item9 = "", item10 = "", arquivo = null;    
  DecimalFormat df = new DecimalFormat("0.00");
 // valores obtidos no protheus;
     String RautNTributado = "8349";
@@ -240,15 +251,17 @@ String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 =
     String Rinss = "8346";
     String Rsest = "8347";
     String RSenat = "8352";
+    
+
  
-    if(dados12.getCBO().replaceAll("\\s+","").contains("782310")){
+    if(lista.get(x).getCBO().replaceAll("\\s+","").contains("782310")){
     codCategoria = "712";
     
-    }else if(dados12.getCBO().replaceAll("\\s+","").contains("715615") || dados12.getCBO().replaceAll("\\s+","").contains("914410") || dados12.getCBO().replaceAll("\\s+","").contains("914405")){
+    }else if(lista.get(x).getCBO().replaceAll("\\s+","").contains("715615") || lista.get(x).getCBO().replaceAll("\\s+","").contains("914410") || lista.get(x).getCBO().replaceAll("\\s+","").contains("914405")){
     
         codCategoria = "741";
     
-    }else if(dados12.getCBO().replaceAll("\\s+","").contains("782315")){
+    }else if(lista.get(x).getCBO().replaceAll("\\s+","").contains("782315")){
     
         codCategoria = "711";
     
@@ -258,7 +271,7 @@ String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 =
     
     }
     
-    if("00".equals(dados12.getF1_FILIAL().replaceAll("\\s+",""))){
+    if("00".equals(lista.get(x).getF1_FILIAL().replaceAll("\\s+",""))){
      nrInsc = "00350387000106";
      codLotacao = "01.01";
     }else{   
@@ -270,9 +283,9 @@ if("741".equals(codCategoria.replaceAll("\\s+",""))){
     
        item1 =  "<itensRemun>\n" +
               "<codRubr>" + "8351" + "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+String.valueOf(df.format(Double.parseDouble(dados12.getE2_VALOR()))).replace(",", ".")+"</vrRubr>\n" +
+             "<vrRubr>"+String.valueOf(df.format(Double.parseDouble(lista.get(x).getE2_VALOR()))).replace(",", ".")+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>";
     
@@ -280,22 +293,22 @@ if("741".equals(codCategoria.replaceAll("\\s+",""))){
 }else if("701".equals(codCategoria.replaceAll("\\s+",""))){
 
     
-    if(214420 == (Integer.parseInt(dados12.getCBO().replaceAll("\\s+",""))) || 223208 == (Integer.parseInt(dados12.getCBO().replaceAll("\\s+","")))){
+    if(214420 == (Integer.parseInt(lista.get(x).getCBO().replaceAll("\\s+",""))) || 223208 == (Integer.parseInt(lista.get(x).getCBO().replaceAll("\\s+","")))){
     item2 =  "<itensRemun>\n" +
               "<codRubr>" + RpagTribu + "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+dados12.getF1_BASEINS()+"</vrRubr>\n" +
+             "<vrRubr>"+lista.get(x).getF1_BASEINS()+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
 
- if(!"0.0".equals(dados12.getF1_INSS().replaceAll("\\s+",""))){
+ if(!"0.0".equals(lista.get(x).getF1_INSS().replaceAll("\\s+",""))){
     
       item3 =  "<itensRemun>\n" +
               "<codRubr>" + Rinss + "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+dados12.getF1_INSS()+"</vrRubr>\n" +
+             "<vrRubr>"+lista.get(x).getF1_INSS()+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
 
@@ -304,9 +317,9 @@ if("741".equals(codCategoria.replaceAll("\\s+",""))){
     
          item4 =  "<itensRemun>\n" +
               "<codRubr>" + RpagTribu + "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>" + String.valueOf(df.format(Double.parseDouble(dados12.getE2_VALOR()))).replace(",", ".") + "</vrRubr>\n" +
+             "<vrRubr>" + String.valueOf(df.format(Double.parseDouble(lista.get(x).getE2_VALOR()))).replace(",", ".") + "</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
     
@@ -316,19 +329,19 @@ if("741".equals(codCategoria.replaceAll("\\s+",""))){
 
   item5 =  "<itensRemun>\n" +
               "<codRubr>" + RpagTribu + "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+dados12.getF1_BASEINS()+"</vrRubr>\n" +
+             "<vrRubr>"+lista.get(x).getF1_BASEINS()+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
   
-  if(!"0.0".equals(dados12.getF1_INSS().replaceAll("\\s+",""))){
+  if(!"0.0".equals(lista.get(x).getF1_INSS().replaceAll("\\s+",""))){
   
     item6 =  "<itensRemun>\n" +
               "<codRubr>" + Rinss+ "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+dados12.getF1_INSS()+"</vrRubr>\n" +
+             "<vrRubr>"+lista.get(x).getF1_INSS()+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
   }
@@ -336,62 +349,35 @@ if("741".equals(codCategoria.replaceAll("\\s+",""))){
   
 item7 =  "<itensRemun>\n" +
               "<codRubr>" +RautNTributado+ "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(dados12.getF1_VALMERC().replaceAll("\\s+","")) - Double.parseDouble(dados12.getF1_BASEINS().replaceAll("\\s+",""))))).replace(",", ".") +"</vrRubr>\n" +
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(x).getF1_VALMERC().replaceAll("\\s+","")) - Double.parseDouble(lista.get(x).getF1_BASEINS().replaceAll("\\s+",""))))).replace(",", ".") +"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
       
   item8 =  "<itensRemun>\n" +
               "<codRubr>" +Rsest+ "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(dados12.getF1_BASEINS().replaceAll("\\s+","")) * 0.015))).replace(",", ".")+"</vrRubr>\n" +
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(x).getF1_BASEINS().replaceAll("\\s+","")) * 0.015))).replace(",", ".")+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
   
   item9 =  "<itensRemun>\n" +
               "<codRubr>" +RSenat+ "</codRubr> \n" +
-                "<ideTabRubr>000001</ideTabRubr>\n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
                //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
-             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(dados12.getF1_VALSEST().replaceAll("\\s+","")) - (Double.parseDouble(dados12.getF1_BASEINS().replaceAll("\\s+","")) * 0.015)))).replace(",", ".")+"</vrRubr>\n" +
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(x).getF1_VALSEST().replaceAll("\\s+","")) - (Double.parseDouble(lista.get(x).getF1_BASEINS().replaceAll("\\s+","")) * 0.015)))).replace(",", ".")+"</vrRubr>\n" +
              "<indApurIR>0</indApurIR>\n" +
               "</itensRemun>\n";
 
 
 }
 
-    
-     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-     
-   // JOptionPane.showMessageDialog(null, "" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-"));
-    
-       FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + " " + dados12.getA2_NOME() + ".xml");
-        PrintWriter gravarArq = new PrintWriter(arq);
-        
-        gravarArq.printf("<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtRemun/v_S_01_00_00\">\n" +
-"<evtRemun Id=\"ID144519748000000" + dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+","") + numero + "2022" + "\">\n" +
-"<ideEvento>\n" +
-"<indRetif>" + IndicadorRetificacao.replaceAll("\\s+","") + "</indRetif>\n" +
-"<indApuracao>1</indApuracao>\n" +
-"<perApur>"+ dados12.getPERAPUR().replaceAll("\\s+","") +"</perApur>\n" +
-"<tpAmb>"+ TipoAmbiente.replaceAll("\\s+","") +"</tpAmb>\n" +
-"<procEmi>1</procEmi>\n" +
-"<verProc>1.0</verProc>\n" +
-"</ideEvento>\n" +
-"<ideEmpregador>\n" +
-"<tpInsc>1</tpInsc>\n" +
-"<nrInsc>00350387</nrInsc>\n" +
-"</ideEmpregador>\n" +
-"<ideTrabalhador>\n" +
-"<cpfTrab>"+dados12.getC9V_CPF().replaceAll("\\s+","")+"</cpfTrab>\n" +
-"<infoComplem>\n" +
-"<nmTrab>"+ dados12.getA2_NOME().trim() +"</nmTrab>\n" +
-"<dtNascto>"+ dados12.getDT_NASC().replaceAll("\\s+","") +"</dtNascto>\n" +
-"</infoComplem>\n" +
-"</ideTrabalhador>\n" +
+
+item10 =
 "<dmDev>\n" +
-"<ideDmDev>"+ dados12.getIdeDmDev().replace("/", "").replaceAll("\\s+","") +"</ideDmDev>\n" +        
+"<ideDmDev>"+ lista.get(x).getIdeDmDev().replace("/", "").replaceAll("\\s+","") +"</ideDmDev>\n" +        
                 //condicional
 "<codCateg>"+ codCategoria.replaceAll("\\s+","") +"</codCateg>\n" +
 "<infoPerApur>\n" +
@@ -437,15 +423,57 @@ item7 =  "<itensRemun>\n" +
 "</ideEstabLot>\n" +
 "</infoPerApur>\n" +
 "<infoComplCont>\n" +
-"<codCBO>"+dados12.getCBO().replaceAll("\\s+","")+"</codCBO>\n" +
+"<codCBO>"+lista.get(x).getCBO().replaceAll("\\s+","")+"</codCBO>\n" +
 "</infoComplCont>\n" +
-"</dmDev>\n" +
+"</dmDev>\n";
+
+
+
+ DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+ 
+arquivo = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtRemun/v_S_01_00_00\">\n" +
+"<evtRemun Id=\"ID144519748000000" + dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+","") + numero + "2022" + "\">\n" +
+"<ideEvento>\n" +
+"<indRetif>" + IndicadorRetificacao.replaceAll("\\s+","") + "</indRetif>\n" +
+"<indApuracao>1</indApuracao>\n" +
+"<perApur>"+ lista.get(x).getPERAPUR().replaceAll("\\s+","") +"</perApur>\n" +
+"<tpAmb>"+ TipoAmbiente.replaceAll("\\s+","") +"</tpAmb>\n" +
+"<procEmi>1</procEmi>\n" +
+"<verProc>1.0</verProc>\n" +
+"</ideEvento>\n" +
+"<ideEmpregador>\n" +
+"<tpInsc>1</tpInsc>\n" +
+"<nrInsc>00350387</nrInsc>\n" +
+"</ideEmpregador>\n" +
+"<ideTrabalhador>\n" +
+"<cpfTrab>"+lista.get(x).getC9V_CPF().replaceAll("\\s+","")+"</cpfTrab>\n" +
+"<infoComplem>\n" +
+"<nmTrab>"+ lista.get(x).getA2_NOME().trim() +"</nmTrab>\n" +
+"<dtNascto>"+ lista.get(x).getDT_NASC().replaceAll("\\s+","") +"</dtNascto>\n" +
+"</infoComplem>\n" +
+"</ideTrabalhador>\n" +
+item10 +
 "</evtRemun>\n" +
-"</eSocial>");
+"</eSocial>";
+
+    
+    
+     
+   // JOptionPane.showMessageDialog(null, "" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-"));
+    
+       FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + numero +" " + lista.get(x).getA2_NOME()  + ".xml".trim().replaceAll("\\s+",""));
+        PrintWriter gravarArq = new PrintWriter(arq);
+        
+        gravarArq.printf(arquivo);
 
         arq.close();
 
       //  JOptionPane.showMessageDialog(null, "Arquivo gerado com sucesso!");
+    
+         
+         
+     }   
+        
     
     
     
@@ -459,7 +487,7 @@ item7 =  "<itensRemun>\n" +
      
    // JOptionPane.showMessageDialog(null, "" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-"));
     
-       FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1210\\s-1210-" +  dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","") + " " + dados1210.getE2_NOMFOR() + ".xml");
+       FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1210\\s-1210-" +  dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","") + numero + " " + dados1210.getE2_NOMFOR() + ".xml".trim().replaceAll("\\s+",""));
         PrintWriter gravarArq = new PrintWriter(arq);
 
         gravarArq.printf("<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtPgtos/v_S_01_00_00\">\n" +
@@ -484,7 +512,7 @@ item7 =  "<itensRemun>\n" +
 //"<indResBr>S</indResBr>\n" +
 //"<detPgtoFl>\n" +
 "<perRef>"+dados1210.getEMISSAO().replaceAll("\\s+","").substring(0,7)+"</perRef>\n" +
-"<ideDmDev>"+dados1210.getIdeDmDev().replaceAll("\\s+","")+"</ideDmDev>\n" +
+"<ideDmDev>"+dados1210.getIdeDmDev().replace("/", "").replaceAll("\\s+","")+"</ideDmDev>\n" +
 //"<indPgtoTt>S</indPgtoTt>\n" +
 "<vrLiq>"+dados1210.getE5_VALOR().replaceAll("\\s+","")+"</vrLiq>\n" +
 //"</detPgtoFl>\n" +

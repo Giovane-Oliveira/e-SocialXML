@@ -25,6 +25,7 @@ import model.Dadoss1210;
 public class main extends javax.swing.JFrame {
 
     static boolean checkbox12, checkbox1210;
+   
 
     /**
      * Creates new form main
@@ -44,22 +45,14 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaS12 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabela1210 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        op12 = new javax.swing.JCheckBox();
-        op1210 = new javax.swing.JCheckBox();
         dataInicial = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
         dataFinal = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         te2valor = new javax.swing.JLabel();
@@ -69,13 +62,26 @@ public class main extends javax.swing.JFrame {
         tf1baseins = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         tf1inss = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        tf1valsest = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TabelaS12 = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         te5valor = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         tf1inss2 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        tf1valsest = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabela1210 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        dataInicial2 = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        dataFinal2 = new javax.swing.JFormattedTextField();
+        Gerarxml2 = new javax.swing.JButton();
+        Consultar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -85,10 +91,84 @@ public class main extends javax.swing.JFrame {
 
         jLabel2.setText("Data Inicial");
 
+        try {
+            dataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel3.setText("Data Final");
+
+        try {
+            dataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Gerar XML");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("TOTALIZADORES:");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("E2_VALOR:");
+
+        te2valor.setText("00.00");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("F1_VALMERC:");
+
+        tf1valmerc.setText("00.00");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("F1_BASEINS:");
+
+        tf1baseins.setText("00.00");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("F1_INSS:");
+
+        tf1inss.setText("00.00");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("F1_VALSEST:");
+
+        tf1valsest.setText("00.00");
 
         TabelaS12.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -136,30 +216,141 @@ public class main extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1071, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Consultar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(te2valor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf1valmerc)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2))))
+                        .addGap(4, 4, 4)
+                        .addComponent(tf1baseins)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf1inss)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf1valsest)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(dataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(te2valor)
+                    .addComponent(jLabel9)
+                    .addComponent(tf1valmerc)
+                    .addComponent(jLabel11)
+                    .addComponent(tf1baseins)
+                    .addComponent(jLabel13)
+                    .addComponent(tf1inss)
+                    .addComponent(jLabel15)
+                    .addComponent(tf1valsest))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("S-1200");
+        jTabbedPane1.addTab("S-1200", jPanel3);
+
+        jLabel8.setText("TOTALIZADORES:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("E5_VALOR:");
+
+        te5valor.setText("00.00");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("F1_INSS:");
+
+        tf1inss2.setText("00.00");
 
         tabela1210.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -195,218 +386,131 @@ public class main extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1089, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jButton2.setText("Gerar XML");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        op12.setText("S-1200");
-        op12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                op12ActionPerformed(evt);
-            }
-        });
-
-        op1210.setText("S-1210");
-        op1210.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                op1210ActionPerformed(evt);
-            }
-        });
-
-        try {
-            dataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            dataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("S-1210");
-
-        jLabel6.setText("TOTALIZADORES:");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("E2_VALOR:");
-
-        te2valor.setText("00.00");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel9.setText("F1_VALMERC:");
-
-        tf1valmerc.setText("00.00");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel11.setText("F1_BASEINS:");
-
-        tf1baseins.setText("00.00");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("F1_INSS:");
-
-        tf1inss.setText("00.00");
-
-        jLabel8.setText("TOTALIZADORES:");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("E5_VALOR:");
-
-        te5valor.setText("00.00");
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setText("F1_INSS:");
-
-        tf1inss2.setText("00.00");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setText("F1_VALSEST:");
-
-        tf1valsest.setText("00.00");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(te2valor)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf1valmerc)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf1baseins)
-                                                .addGap(14, 14, 14)
-                                                .addComponent(jLabel13)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf1inss)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel15)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf1valsest))
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8))))))
-                        .addContainerGap(15, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel3))
-                                    .addComponent(jButton1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(op12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(op1210))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(jButton2))))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(te5valor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf1inss2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+        jLabel4.setText("Data Inicial");
+
+        try {
+            dataInicial2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel5.setText("Data Final");
+
+        try {
+            dataFinal2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        Gerarxml2.setText("Gerar XML");
+        Gerarxml2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Gerarxml2ActionPerformed(evt);
+            }
+        });
+
+        Consultar2.setText("Consultar");
+        Consultar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Consultar2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Consultar2)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(dataInicial2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dataFinal2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Gerarxml2)))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(te5valor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf1inss2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dataInicial2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(dataFinal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(op12)
-                    .addComponent(op1210)
-                    .addComponent(dataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(22, 22, 22)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(te2valor)
-                    .addComponent(jLabel9)
-                    .addComponent(tf1valmerc)
-                    .addComponent(jLabel11)
-                    .addComponent(tf1baseins)
-                    .addComponent(jLabel13)
-                    .addComponent(tf1inss)
-                    .addComponent(jLabel15)
-                    .addComponent(tf1valsest))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Gerarxml2)
+                    .addComponent(Consultar2))
+                .addGap(35, 35, 35)
                 .addComponent(jLabel8)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(te5valor)
                     .addComponent(jLabel14)
                     .addComponent(tf1inss2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("S-1210", jPanel4);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -416,6 +520,7 @@ public class main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Double e2valor = 0.0,f1valmerc = 0.0,f1baseins = 0.0,f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0; //totalizadores
+        int count = 0;
         DecimalFormat df = new DecimalFormat("0.00");
         
         if (dataInicial.getText().replace("/", "").trim().isEmpty() || dataFinal.getText().replace("/", "").trim().isEmpty()) {
@@ -436,15 +541,16 @@ public class main extends javax.swing.JFrame {
                 f1baseins = f1baseins + Double.parseDouble(c.getF1_BASEINS().trim());
                 f1inss = f1inss + Double.parseDouble(c.getF1_INSS().trim());
                  f1valsest = f1valsest + Double.parseDouble(c.getF1_VALSEST().trim());
+                 count = count + 1;
                 dadoss12.addRow(new Object[]{
                     c.getE2_FORNECE(),
                     c.getE2_NOMFOR(),
-                    c.getE2_VALOR(),
+                    c.getE2_VALOR().replace('.', ','),
                     c.getF1_DOC(),
-                    c.getF1_VALMERC(),
-                    c.getF1_BASEINS(),
-                    c.getF1_VALSEST(),
-                    c.getF1_INSS(),
+                    c.getF1_VALMERC().replace('.', ','),
+                    c.getF1_BASEINS().replace('.', ','),
+                    c.getF1_VALSEST().replace('.', ','),
+                    c.getF1_INSS().replace('.',','),
                     c.getE2_EMISSAO(),
                     c.getE2_VENCREA(),
                     c.getC9V_ID(),
@@ -461,35 +567,13 @@ public class main extends javax.swing.JFrame {
                     c.getA2_NOME()
                 });
             }
-       te2valor.setText("" + String.valueOf(df.format(e2valor)));
-        tf1valmerc.setText("" + String.valueOf(df.format(f1valmerc)));
-         tf1baseins.setText("" + String.valueOf(df.format(f1baseins)));
-          tf1inss.setText("" + String.valueOf(df.format(f1inss)));
-           tf1valsest.setText("" + String.valueOf(df.format(f1valsest)));
-            ReqDAO obj = new ReqDAO();
-            List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial.getText(), dataFinal.getText());
-            DefaultTableModel dadoss1210 = (DefaultTableModel) tabela1210.getModel();
-            tabela1210.setAutoResizeMode(tabela1210.AUTO_RESIZE_OFF);
-            dadoss1210.setNumRows(0);
-            for (Dadoss1210 c : lista2) {
-            e5valor = e5valor + Double.parseDouble(c.getE5_VALOR().trim());
-            f1inss2 = f1inss2 + Double.parseDouble(c.getF1_INSS().trim());
-                dadoss1210.addRow(new Object[]{
-                    c.getPERIODO(),
-                    c.getC9V_CPF(),
-                    c.getDT_BAIXA(),
-                    c.getE5_VALOR(),
-                    c.getEMISSAO(),
-                    c.getF1_INSS(),
-                    c.getE2_FORNECE(),
-                    c.getE2_NOMFOR(),
-                    c.getNUMDOC(),
-                    c.getIdeDmDev()
-
-                });
-            }
-  te5valor.setText("" + String.valueOf(df.format(e5valor)));
-  tf1inss2.setText("" + String.valueOf(df.format(f1inss2)));
+            
+             te2valor.setText("" + String.valueOf(df.format(e2valor/count)).replace('.', ','));
+        tf1valmerc.setText("" + String.valueOf(df.format(f1valmerc/count)).replace('.', ','));
+         tf1baseins.setText("" + String.valueOf(df.format(f1baseins/count)).replace('.', ','));
+          tf1inss.setText("" + String.valueOf(df.format(f1inss/count)).replace('.', ','));
+           tf1valsest.setText("" + String.valueOf(df.format(f1valsest/count)).replace('.', ','));
+              
         }
 
 
@@ -509,81 +593,80 @@ public class main extends javax.swing.JFrame {
 
             ReqDAO obj = new ReqDAO();
             List<Dadoss12> lista = obj.consultarDadosS12(dataInicial.getText(), dataFinal.getText());
-            List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial.getText(), dataFinal.getText());
 
-            if (checkbox12 == true && checkbox1210 == true) {
-
-                do {
-
-                    IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                    TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
-               } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
-
-                for (Dadoss12 c : lista) {
-
-                    try {
-                        obj.gerarxml12(c, IndicadorRetificacao, TipoAmbiente);
-                    } catch (IOException ex) {
-                        n = 0;
-                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-                for (Dadoss1210 d : lista2) {
-
-                    try {
-                        obj.gerarxml1210(d, IndicadorRetificacao, TipoAmbiente);
-
-                    } catch (IOException ex) {
-                        n = 0;
-                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-            } else if (checkbox12 == true && checkbox1210 == false) {
-                do {
+            do {
 
                     IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
                     TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
                 } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
-                for (Dadoss12 c : lista) {
-
-                    try {
-                        obj.gerarxml12(c, IndicadorRetificacao, TipoAmbiente);
-
-                    } catch (IOException ex) {
-                        n = 0;
-                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-            } else if (checkbox12 == false && checkbox1210 == true) {
-                do {
-
-                    IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                    TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
-                    JOptionPane.showMessageDialog(null, "Aqui " + TipoAmbiente.replaceAll("\\s+", ""));
-                } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
-
-                for (Dadoss1210 d : lista2) {
-
-                    try {
-                        obj.gerarxml1210(d, IndicadorRetificacao, TipoAmbiente);
-
-                    } catch (IOException ex) {
-                        n = 0;
-                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Marque alguma das opções para gerar o xml");
+            
+            try {
+                obj.gerarxml12(lista, IndicadorRetificacao, TipoAmbiente);
+                
+                
+                /* for (Dadoss12 c : lista) {
+                
+                try {
+                obj.gerarxml12(c, IndicadorRetificacao, TipoAmbiente);
+                
+                } catch (IOException ex) {
                 n = 0;
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }*/
+                /*  try {
+                obj.gerarxml("teste");
+                
+                }
+                
+                
+                } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"Erro: " + ex);
+            }*/ } catch (IOException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
 
+        if (n == 1) {
+
+            JOptionPane.showMessageDialog(null, "Arquivo gerado com sucesso");
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Gerarxml2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Gerarxml2ActionPerformed
+            // TODO add your handling code here:
+        int n = 1;
+        String TipoAmbiente;
+        String IndicadorRetificacao;
+        if (dataInicial2.getText().replace("/", "").trim().isEmpty() || dataFinal2.getText().replace("/", "").trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Informe a data inicial e final");
+            n = 0;
+
+        } else {
+
+            ReqDAO obj = new ReqDAO();
+            List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial2.getText(), dataFinal2.getText());
+
+            do {
+
+                    IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
+                    TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
+                } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
+
+            
+            for (Dadoss1210 c : lista2) {
+
+                    try {
+                        obj.gerarxml1210(c, IndicadorRetificacao, TipoAmbiente);
+
+                    } catch (IOException ex) {
+                        n = 0;
+                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             /*  try {
             obj.gerarxml("teste");
         
@@ -600,36 +683,53 @@ public class main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Arquivo gerado com sucesso");
 
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+       
 
-    private void op12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_op12ActionPerformed
-        // TODO add your handling code here:
+                
 
-        JCheckBox cbLog = (JCheckBox) evt.getSource();
-        if (cbLog.isSelected()) {
-            // System.out.println("Logging is enabled");
-            checkbox12 = true;
+        
+    }//GEN-LAST:event_Gerarxml2ActionPerformed
+
+    private void Consultar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Consultar2ActionPerformed
+      Double e2valor = 0.0,f1valmerc = 0.0,f1baseins = 0.0,f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0;
+      int count = 0; //totalizadores
+        DecimalFormat df = new DecimalFormat("0.00");
+        
+        if (dataInicial2.getText().replace("/", "").trim().isEmpty() || dataFinal2.getText().replace("/", "").trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Informe a data inicial e final");
+
         } else {
-            checkbox1210 = false;
-//System.out.println("Logging is disabled");
+      
+            ReqDAO obj = new ReqDAO();
+            List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial2.getText(), dataFinal2.getText());
+            DefaultTableModel dadoss1210 = (DefaultTableModel) tabela1210.getModel();
+            tabela1210.setAutoResizeMode(tabela1210.AUTO_RESIZE_OFF);
+            dadoss1210.setNumRows(0);
+            for (Dadoss1210 c : lista2) {
+                count  = count  +1;
+            e5valor = e5valor + Double.parseDouble(c.getE5_VALOR().trim());
+            f1inss2 = f1inss2 + Double.parseDouble(c.getF1_INSS().trim());
+                dadoss1210.addRow(new Object[]{
+                    c.getPERIODO(),
+                    c.getC9V_CPF(),
+                    c.getDT_BAIXA(),
+                    c.getE5_VALOR().replace('.',','),
+                    c.getEMISSAO(),
+                    c.getF1_INSS().replace('.', ','),
+                    c.getE2_FORNECE(),
+                    c.getE2_NOMFOR(),
+                    c.getNUMDOC(),
+                    c.getIdeDmDev()
+
+                });
+            }
+  te5valor.setText("" + String.valueOf(df.format(e5valor/count)).replace('.',','));
+  tf1inss2.setText("" + String.valueOf(df.format(f1inss2/count)).replace('.',','));
         }
 
 
-    }//GEN-LAST:event_op12ActionPerformed
-
-    private void op1210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_op1210ActionPerformed
-        // TODO add your handling code here:
-        JCheckBox cbLog = (JCheckBox) evt.getSource();
-        if (cbLog.isSelected()) {
-            checkbox1210 = true;
-//System.out.println("Logging is enabled");
-        } else {
-            checkbox12 = false;
-//System.out.println("Logging is disabled");
-        }
-
-
-    }//GEN-LAST:event_op1210ActionPerformed
+    }//GEN-LAST:event_Consultar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -667,9 +767,13 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Consultar2;
+    private javax.swing.JButton Gerarxml2;
     private javax.swing.JTable TabelaS12;
     private javax.swing.JFormattedTextField dataFinal;
+    private javax.swing.JFormattedTextField dataFinal2;
     private javax.swing.JFormattedTextField dataInicial;
+    private javax.swing.JFormattedTextField dataInicial2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -688,10 +792,11 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JCheckBox op12;
-    private javax.swing.JCheckBox op1210;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabela1210;
     private javax.swing.JLabel te2valor;
     private javax.swing.JLabel te5valor;

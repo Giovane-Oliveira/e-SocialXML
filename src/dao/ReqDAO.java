@@ -36,10 +36,10 @@ import java.util.Random;
 public class ReqDAO {
     
      private Connection con;
- static String fornecedor;
- static String[] arquivos;
+ static String fornecedor, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10;
+ static int forx = 10;
  static int xcount;
- static int position[];
+ 
 
     public ReqDAO() {
         this.con = new ConnectionFactory().getConnection();
@@ -233,17 +233,12 @@ public class ReqDAO {
     public void gerarxml12(List<Dadoss12> lista, String IndicadorRetificacao, String TipoAmbiente) throws IOException{  
         
   int x;
-  
-  
-     for(x = 0; x < lista.size(); x++){
-     
-         
-          Random random = new Random();
+            Random random = new Random();
      int numero = random.nextInt(9);  
      verificarPasta();
 
  
-String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 = "", item4 = "", item5 = "", item6 = "", item7 = "", item8 = "", item9 = "", item10 = "", arquivo = null;    
+String codCategoria, nrInsc, codLotacao, codigo,  arquivo = null;    
  DecimalFormat df = new DecimalFormat("0.00");
 // valores obtidos no protheus;
     String RautNTributado = "8349";
@@ -251,10 +246,15 @@ String codCategoria, nrInsc, codLotacao, codigo, item1 = "", item2 = "", item3 =
     String Rinss = "8346";
     String Rsest = "8347";
     String RSenat = "8352";
-    
-
- 
-    if(lista.get(x).getCBO().replaceAll("\\s+","").contains("782310")){
+  
+     for(x = 0; x < lista.size(); x++){
+     
+         if(forx == x){
+         
+         
+         }else{
+         
+         if(lista.get(x).getCBO().replaceAll("\\s+","").contains("782310")){
     codCategoria = "712";
     
     }else if(lista.get(x).getCBO().replaceAll("\\s+","").contains("715615") || lista.get(x).getCBO().replaceAll("\\s+","").contains("914410") || lista.get(x).getCBO().replaceAll("\\s+","").contains("914405")){
@@ -374,8 +374,7 @@ item7 =  "<itensRemun>\n" +
 
 }
 
-
-item10 =
+ item10 +=
 "<dmDev>\n" +
 "<ideDmDev>"+ lista.get(x).getIdeDmDev().replace("/", "").replaceAll("\\s+","") +"</ideDmDev>\n" +        
                 //condicional
@@ -426,6 +425,203 @@ item10 =
 "<codCBO>"+lista.get(x).getCBO().replaceAll("\\s+","")+"</codCBO>\n" +
 "</infoComplCont>\n" +
 "</dmDev>\n";
+    
+
+
+    
+
+ 
+    
+ 
+
+int y = x +1;
+
+if(y < lista.size()){
+
+
+    if(lista.get(x).getE2_FORNECE().toString().equals(lista.get(y).getE2_FORNECE().toString())){
+        
+        forx = y;
+        
+        if(lista.get(y).getCBO().replaceAll("\\s+","").contains("782310")){
+    codCategoria = "712";
+    
+    }else if(lista.get(y).getCBO().replaceAll("\\s+","").contains("715615") || lista.get(y).getCBO().replaceAll("\\s+","").contains("914410") || lista.get(y).getCBO().replaceAll("\\s+","").contains("914405")){
+    
+        codCategoria = "741";
+    
+    }else if(lista.get(y).getCBO().replaceAll("\\s+","").contains("782315")){
+    
+        codCategoria = "711";
+    
+    }else{
+    
+    codCategoria = "701";
+    
+    }
+    
+    if("00".equals(lista.get(y).getF1_FILIAL().replaceAll("\\s+",""))){
+     nrInsc = "00350387000106";
+     codLotacao = "01.01";
+    }else{   
+      nrInsc = "00350387000459";
+     codLotacao = "01.04"; 
+    }
+    
+if("741".equals(codCategoria.replaceAll("\\s+",""))){
+    
+       item1 =  "<itensRemun>\n" +
+              "<codRubr>" + "8351" + "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+String.valueOf(df.format(Double.parseDouble(lista.get(y).getE2_VALOR()))).replace(",", ".")+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>";
+    
+
+}else if("701".equals(codCategoria.replaceAll("\\s+",""))){
+
+    
+    if(214420 == (Integer.parseInt(lista.get(y).getCBO().replaceAll("\\s+",""))) || 223208 == (Integer.parseInt(lista.get(y).getCBO().replaceAll("\\s+","")))){
+    item2 =  "<itensRemun>\n" +
+              "<codRubr>" + RpagTribu + "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+lista.get(y).getF1_BASEINS()+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+
+ if(!"0.0".equals(lista.get(y).getF1_INSS().replaceAll("\\s+",""))){
+    
+      item3 =  "<itensRemun>\n" +
+              "<codRubr>" + Rinss + "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+lista.get(y).getF1_INSS()+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+
+}
+    }else{
+    
+         item4 =  "<itensRemun>\n" +
+              "<codRubr>" + RpagTribu + "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>" + String.valueOf(df.format(Double.parseDouble(lista.get(y).getE2_VALOR()))).replace(",", ".") + "</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+    
+    }
+       
+}else{
+
+  item5 =  "<itensRemun>\n" +
+              "<codRubr>" + RpagTribu + "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+lista.get(y).getF1_BASEINS()+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+  
+  if(!"0.0".equals(lista.get(y).getF1_INSS().replaceAll("\\s+",""))){
+  
+    item6 =  "<itensRemun>\n" +
+              "<codRubr>" + Rinss+ "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+lista.get(y).getF1_INSS()+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+  }
+  
+  
+item7 =  "<itensRemun>\n" +
+              "<codRubr>" +RautNTributado+ "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(y).getF1_VALMERC().replaceAll("\\s+","")) - Double.parseDouble(lista.get(y).getF1_BASEINS().replaceAll("\\s+",""))))).replace(",", ".") +"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+      
+  item8 =  "<itensRemun>\n" +
+              "<codRubr>" +Rsest+ "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(y).getF1_BASEINS().replaceAll("\\s+","")) * 0.015))).replace(",", ".")+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+  
+  item9 =  "<itensRemun>\n" +
+              "<codRubr>" +RSenat+ "</codRubr> \n" +
+                "<ideTabRubr>1</ideTabRubr>\n" +
+               //  ' colocar               Codigo = Codigo & "<qtdRubr>1</qtdRubr>"
+             "<vrRubr>"+String.valueOf(df.format((Double.parseDouble(lista.get(y).getF1_VALSEST().replaceAll("\\s+","")) - (Double.parseDouble(lista.get(y).getF1_BASEINS().replaceAll("\\s+","")) * 0.015)))).replace(",", ".")+"</vrRubr>\n" +
+             "<indApurIR>0</indApurIR>\n" +
+              "</itensRemun>\n";
+
+
+}  
+        
+        item10 +=
+"<dmDev>\n" +
+"<ideDmDev>"+ lista.get(y).getIdeDmDev().replace("/", "").replaceAll("\\s+","") +"</ideDmDev>\n" +        
+                //condicional
+"<codCateg>"+ codCategoria.replaceAll("\\s+","") +"</codCateg>\n" +
+"<infoPerApur>\n" +
+"<ideEstabLot>\n" +
+"<tpInsc>1</tpInsc>\n" +
+"<nrInsc>"+nrInsc.replaceAll("\\s+","")+"</nrInsc>\n" +
+"<codLotacao>"+codLotacao.replaceAll("\\s+","")+"</codLotacao>\n" +
+"<remunPerApur>\n" + //aqui comeca verificao dos dados
+  item1 + item2 + item3 + item4 + item5 + item6 + item7 + item8 + item9 +      
+        
+        
+/*"<itensRemun>\n" +
+"<codRubr>"+RpagTribu+"</codRubr>\n" +
+"<ideTabRubr>000001</ideTabRubr>\n" +
+"<vrRubr>"+dados12.getF1_BASEINS()+"</vrRubr>\n" +
+"<indApurIR>0</indApurIR>\n" +
+"</itensRemun>\n" +
+"<itensRemun>\n" +
+"<codRubr>"+Rinss+"</codRubr>\n" +
+"<ideTabRubr>000001</ideTabRubr>\n" +
+"<vrRubr>"+dados12.getF1_INSS()+"</vrRubr>\n" +
+"<indApurIR>0</indApurIR>\n" +
+"</itensRemun>\n" +
+"<itensRemun>\n" +
+"<codRubr>"+RautNTributado+"</codRubr>\n" +
+"<ideTabRubr>000001</ideTabRubr>\n" +
+"<vrRubr>"+String.valueOf(df.format((Double.parseDouble(dados12.getF1_VALMERC()) - Double.parseDouble(dados12.getF1_BASEINS())))).replace(",", ".") +"</vrRubr>\n" +
+"<indApurIR>0</indApurIR>\n" +
+"</itensRemun>\n" +
+"<itensRemun>\n" +
+"<codRubr>"+Rsest+"</codRubr>\n" +
+"<ideTabRubr>000001</ideTabRubr>\n" +
+"<vrRubr>" + String.valueOf(df.format((Double.parseDouble(dados12.getF1_BASEINS()) * 0.015))).replace(",", ".") +"</vrRubr>\n" +
+"<indApurIR>0</indApurIR>\n" +
+"</itensRemun>\n" +
+"<itensRemun>\n" +
+"<codRubr>"+RSenat+"</codRubr>\n" +
+"<ideTabRubr>000001</ideTabRubr>\n" +
+"<vrRubr>" + String.valueOf(df.format((Double.parseDouble(dados12.getF1_VALSEST()) - (Double.parseDouble(dados12.getF1_BASEINS()) * 0.015)))).replace(",", ".")+"</vrRubr>\n" +
+"<indApurIR>0</indApurIR>\n" +
+"</itensRemun>\n" +*/
+"</remunPerApur>\n" +
+"</ideEstabLot>\n" +
+"</infoPerApur>\n" +
+"<infoComplCont>\n" +
+"<codCBO>"+lista.get(y).getCBO().replaceAll("\\s+","")+"</codCBO>\n" +
+"</infoComplCont>\n" +
+"</dmDev>\n";
+        
+    
+    
+    }
+    
+}
+
+
 
 
 
@@ -460,19 +656,50 @@ item10 +
     
      
    // JOptionPane.showMessageDialog(null, "" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-"));
-    
-       FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + numero +" " + lista.get(x).getA2_NOME()  + ".xml".trim().replaceAll("\\s+",""));
+   
+
+   
+   if(lista.get(x).getE2_FORNECE().toString().equals(forx)){
+    forx = y;
+   
+   
+   }else{
+   
+           FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + numero +" " + lista.get(x).getA2_NOME()  + ".xml".trim().replaceAll("\\s+",""));
         PrintWriter gravarArq = new PrintWriter(arq);
         
-        gravarArq.printf(arquivo);
+        gravarArq.printf(arquivo.replace("null", ""));
 
         arq.close();
+        
+        item1 = "";
+         item2 = "";
+          item3 = "";
+           item4 = "";
+            item5 = "";
+             item6 = "";
+              item7 = "";
+               item8 = "";
+                item9 = "";
+                item10 = "";
+             
+    
+   
+   }
+    
+       
+    
+    
+
+          
 
       //  JOptionPane.showMessageDialog(null, "Arquivo gerado com sucesso!");
     
          
          
-     }   
+     }
+         
+     }
         
     
     

@@ -37,7 +37,7 @@ public class ReqDAO {
     
      private Connection con;
  static String fornecedor, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10;
- static int forx = 10;
+ static int forx = 123456;
  static int xcount;
  
 
@@ -248,8 +248,10 @@ String codCategoria, nrInsc, codLotacao, codigo,  arquivo = null;
     String RSenat = "8352";
   
      for(x = 0; x < lista.size(); x++){
+         
+       int  w = x + 1;
      
-         if(forx == x){
+         if(forx == x && !lista.get(x).getE2_FORNECE().toString().equals(lista.get(w).getE2_FORNECE().toString()) ){
          
          
          }else{
@@ -653,19 +655,12 @@ item10 +
 "</eSocial>";
 
     
-    
-     
-   // JOptionPane.showMessageDialog(null, "" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-"));
-   
-
-   
-   if(lista.get(x).getE2_FORNECE().toString().equals(forx)){
-    forx = y;
-   
-   
-   }else{
-   
-           FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + numero +" " + lista.get(x).getA2_NOME()  + ".xml".trim().replaceAll("\\s+",""));
+      if(forx == x){
+         
+         
+         }else{
+      
+          FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\s-1200-" + dtf.format(LocalDateTime.now()).replace("/", "-").replace(":", "-").replaceAll("\\s+","")  + numero +" " + lista.get(x).getA2_NOME()  + ".xml".trim().replaceAll("\\s+",""));
         PrintWriter gravarArq = new PrintWriter(arq);
         
         gravarArq.printf(arquivo.replace("null", ""));
@@ -682,10 +677,23 @@ item10 +
                item8 = "";
                 item9 = "";
                 item10 = "";
+   
+      
+      }
+     
+
+   
+
+ 
+   
+   
+
+   
+           
              
     
    
-   }
+   
     
        
     

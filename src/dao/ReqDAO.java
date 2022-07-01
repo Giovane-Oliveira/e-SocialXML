@@ -654,7 +654,7 @@ public class ReqDAO {
             String data = dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+", "").substring(0, 8);
             String hs = dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+", "").substring(8, 14);
             String numero2 = gerarnumero();
-            FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\01_00_s-1200_" + data + "_" + hs + "_" + numero2 + "_" + lista.get(x).getA2_NOME() + ".xml".trim().replaceAll("\\s+", ""));
+            FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1200\\01_00_s-1200_" + data + "_" + hs + "_" + numero2 + "_" + lista.get(x).getA2_NOME().trim().replaceAll("\\s+", "") + ".xml".trim().replaceAll("\\s+", ""));
             PrintWriter gravarArq = new PrintWriter(arq);
 
             gravarArq.printf(arquivo.replace("null", ""));
@@ -753,7 +753,7 @@ public class ReqDAO {
                 String hs = dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+", "").substring(8, 14);
                 String numero2 = gerarnumero();
 
-                FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1210\\01_00_s-1210_" + data + "_" + hs + "_" + numero2 + "_" + lista.get(x).getE2_NOMFOR() + ".xml".trim().replaceAll("\\s+", ""));
+                FileWriter arq = new FileWriter("C:\\Totvs\\e-Social\\S-1210\\01_00_s-1210_" + data + "_" + hs + "_" + numero2 + "_" + lista.get(x).getE2_NOMFOR().trim().replaceAll("\\s+", "") + ".xml".trim().replaceAll("\\s+", ""));
                 PrintWriter gravarArq = new PrintWriter(arq);
 
                 gravarArq.printf(arquivo.replace("null", ""));

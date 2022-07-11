@@ -27,6 +27,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import static jdk.nashorn.internal.objects.NativeString.substring;
 import java.util.Random;
+import jdbc.ConfigSQlite;
 
 /**
  *
@@ -44,13 +45,20 @@ public class ReqDAO {
     }
 
     public List<Dadoss12> consultarDadosS12(String dataInicial, String dataFinal) {
+        
+          String sql = "";
         try {
 
             dataInicial = arrumarData(dataInicial);
             dataFinal = arrumarData(dataFinal);
 
             List<Dadoss12> lista = new ArrayList<>();
-            String sql = "SELECT E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC, F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA, C9V_ID, E2_FORNECE+F1_DOC ideDmDev, F1_FILIAL, C9V_NIS, C9V_CPF, SUBSTRING(E2_EMISSAO,1,4)+'-'+SUBSTRING(E2_EMISSAO,5,2) AS PERAPUR, SUBSTRING(C9V_DTNASC,1,4)+'-'+SUBSTRING(C9V_DTNASC,5,2)+'-'+SUBSTRING(C9V_DTNASC,7,2) DT_NASC,\n"
+            
+            String resultado = new ConfigSQlite().buscarConfig("1");
+            
+            if(resultado.equals("teste")){
+            
+                  sql = "SELECT E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC, F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA, C9V_ID, E2_FORNECE+F1_DOC ideDmDev, F1_FILIAL, C9V_NIS, C9V_CPF, SUBSTRING(E2_EMISSAO,1,4)+'-'+SUBSTRING(E2_EMISSAO,5,2) AS PERAPUR, SUBSTRING(C9V_DTNASC,1,4)+'-'+SUBSTRING(C9V_DTNASC,5,2)+'-'+SUBSTRING(C9V_DTNASC,7,2) DT_NASC,\n"
                     + "\n"
                     + "\n"
                     + "\n"
@@ -86,6 +94,13 @@ public class ReqDAO {
                     + "AND E2_EMISSAO BETWEEN ? AND ? \n"
                     + "AND E2_FORNECE NOT IN('202118','202072')\n"
                     + "ORDER BY 1";
+            
+            } else{
+            
+            sql = resultado;
+            }
+            
+          
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, dataInicial);
             stmt.setString(2, dataFinal);
@@ -144,14 +159,19 @@ public class ReqDAO {
     }
 
     public List<Dadoss1210> consultarDadosS1210(String dataInicial, String dataFinal) {
-
+ String sql  = "";
         try {
 
             dataInicial = arrumarData(dataInicial);
             dataFinal = arrumarData(dataFinal);
 
             List<Dadoss1210> lista = new ArrayList<>();
-            String sql = "SELECT SUBSTRING(E5_DATA,1,4)+'-'+SUBSTRING(E5_DATA,5,2) PERIODO, C9V_CPF, SUBSTRING(E5_DATA ,1,4)+'-'+SUBSTRING(E5_DATA ,5,2)+'-'+SUBSTRING(E5_DATA ,7,2) DT_BAIXA ,E5_VALOR, SUBSTRING(E2_EMISSAO ,1,4)+'-'+SUBSTRING(E2_EMISSAO ,5,2)+'-'+SUBSTRING(E2_EMISSAO ,7,2) EMISSAO ,F1_INSS,E2_FORNECE, E2_NOMFOR,F1_DOC NUMDOC, E2_FORNECE+F1_DOC ideDmDev\n"
+            
+             String resultado = new ConfigSQlite().buscarConfig("2");
+             
+             if(resultado.equals("teste")){
+             
+                  sql = "SELECT SUBSTRING(E5_DATA,1,4)+'-'+SUBSTRING(E5_DATA,5,2) PERIODO, C9V_CPF, SUBSTRING(E5_DATA ,1,4)+'-'+SUBSTRING(E5_DATA ,5,2)+'-'+SUBSTRING(E5_DATA ,7,2) DT_BAIXA ,E5_VALOR, SUBSTRING(E2_EMISSAO ,1,4)+'-'+SUBSTRING(E2_EMISSAO ,5,2)+'-'+SUBSTRING(E2_EMISSAO ,7,2) EMISSAO ,F1_INSS,E2_FORNECE, E2_NOMFOR,F1_DOC NUMDOC, E2_FORNECE+F1_DOC ideDmDev\n"
                     + "FROM SE5010 INNER JOIN SE2010 ON E2_NUM = E5_NUMERO AND E2_FORNECE = E5_CLIFOR AND E2_LOJA = E5_LOJA AND SE2010.D_E_L_E_T_ = ''\n"
                     + "LEFT OUTER JOIN SF1010 ON F1_FILIAL = E2_FILIAL AND F1_FORNECE = E2_FORNECE AND F1_LOJA = E2_LOJA AND E2_NUM = F1_DOC AND SF1010.D_E_L_E_T_ = ''\n"
                     + "LEFT OUTER JOIN SA2010 ON A2_COD = F1_FORNECE AND A2_LOJA = F1_LOJA AND SA2010.D_E_L_E_T_ = ''\n"
@@ -172,6 +192,17 @@ public class ReqDAO {
                     + "\n"
                     + "\n"
                     + "ORDER BY 1,7;";
+             
+             }else{
+                 
+                 
+                 
+                 sql = resultado;
+             
+             
+             }
+             
+          
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, dataInicial);
             stmt.setString(2, dataFinal);

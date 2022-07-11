@@ -5,9 +5,11 @@
  */
 package view;
 
+import jdbc.ConfigSQlite;
 import dao.ReqDAO;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Dadoss12;
 import model.Dadoss1210;
+
 
 /**
  *
@@ -30,9 +33,24 @@ public class main extends javax.swing.JFrame {
     /**
      * Creates new form main
      */
-    public main() {
+    public main() throws SQLException {
         initComponents();
          setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.png")));
+         new ConfigSQlite();
+         String resultado = new  ConfigSQlite().buscarConfig("1");
+         String resultado2 = new  ConfigSQlite().buscarConfig("2");
+         if(resultado.equals("teste")){
+             
+         }else if(resultado2.equals("teste")){
+         
+         
+         }else{
+         
+                sqldb.setText(new  ConfigSQlite().buscarConfig("1"));
+                  sqldb1.setText(new  ConfigSQlite().buscarConfig("2"));
+         
+         }
+     
     }
 
     /**
@@ -82,6 +100,16 @@ public class main extends javax.swing.JFrame {
         dataFinal2 = new javax.swing.JFormattedTextField();
         Gerarxml2 = new javax.swing.JButton();
         Consultar2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        sqldb = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        sqldb1 = new javax.swing.JTextArea();
+        btncon1210 = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jLabel16 = new javax.swing.JLabel();
 
@@ -480,6 +508,98 @@ public class main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("S-1210", jPanel4);
 
+        sqldb.setColumns(20);
+        sqldb.setRows(5);
+        jScrollPane3.setViewportView(sqldb);
+
+        jButton3.setText("Atualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("SQL 1200");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Config S-1200", jPanel5);
+
+        jLabel17.setText("SQL 1210");
+
+        sqldb1.setColumns(20);
+        sqldb1.setRows(5);
+        jScrollPane4.setViewportView(sqldb1);
+
+        btncon1210.setText("Atualizar");
+        btncon1210.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncon1210ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel17)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btncon1210)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btncon1210)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Config S-1210", jPanel6);
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -746,6 +866,40 @@ public class main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Consultar2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        if(sqldb.getText().trim().isEmpty()){
+        
+            JOptionPane.showMessageDialog(null, "Preencha o campo");
+        
+        }else{
+        
+              new ConfigSQlite().alterarConfig(sqldb.getText(), "1");
+        }
+        
+      
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btncon1210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncon1210ActionPerformed
+        // TODO add your handling code here:
+        
+        
+           
+        if(sqldb1.getText().trim().isEmpty()){
+        
+            JOptionPane.showMessageDialog(null, "Preencha o campo");
+        
+        }else{
+        
+              new ConfigSQlite().alterarConfig(sqldb1.getText(), "2");
+        }
+        
+    }//GEN-LAST:event_btncon1210ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -776,7 +930,11 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+                try {
+                    new main().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -785,19 +943,23 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton Consultar2;
     private javax.swing.JButton Gerarxml2;
     private javax.swing.JTable TabelaS12;
+    private javax.swing.JButton btncon1210;
     private javax.swing.JFormattedTextField dataFinal;
     private javax.swing.JFormattedTextField dataFinal2;
     private javax.swing.JFormattedTextField dataInicial;
     private javax.swing.JFormattedTextField dataInicial2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -810,10 +972,16 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private java.awt.Panel panel1;
+    private javax.swing.JTextArea sqldb;
+    private javax.swing.JTextArea sqldb1;
     private javax.swing.JTable tabela1210;
     private javax.swing.JLabel te2valor;
     private javax.swing.JLabel te5valor;

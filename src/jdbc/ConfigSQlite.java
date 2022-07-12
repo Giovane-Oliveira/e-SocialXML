@@ -1,6 +1,5 @@
 package jdbc;
 
-
 import dao.ReqDAO;
 import jdbc.SQLiteJDBCDriverConnection;
 
@@ -21,49 +20,44 @@ import javax.swing.JOptionPane;
  * @author Giovane Oliveira
  */
 public class ConfigSQlite {
-  private Connection sqlite;  
 
-  
-   public ConfigSQlite(){
-       
-       new ReqDAO().verificarPasta();
-    
-    this.sqlite = new SQLiteJDBCDriverConnection().getConnection();
- 
-      try {
-           Statement stmt = sqlite.createStatement();;
-           stmt.execute("CREATE TABLE IF NOT EXISTS CONFIG(ID INTEGER,SQL TEXT)");
-           
-           boolean f = verifica();
-           
-           if(f ==  false){ 
-               
-                 stmt.execute("INSERT INTO CONFIG(ID, SQL) VALUES (1,'teste');");
-                    stmt.execute("INSERT INTO CONFIG(ID, SQL) VALUES (2, 'teste');");
-               
-        
-       //    JOptionPane.showMessageDialog(null, "Configuração do servidor efetuada!\n Clique em ok e inicie o software novamente");
-           }
-       
-           stmt.close();
-        
-           
-          
+    private Connection sqlite;
 
-          
-      } catch (SQLException ex) {
-          Logger.getLogger(ConfigSQlite.class.getName()).log(Level.SEVERE, null, ex);
-      }
+    public ConfigSQlite() {
+
+        new ReqDAO().verificarPasta();
+
+        this.sqlite = new SQLiteJDBCDriverConnection().getConnection();
+
+        try {
+            Statement stmt = sqlite.createStatement();;
+            stmt.execute("CREATE TABLE IF NOT EXISTS CONFIG(ID INTEGER,SQL TEXT)");
+
+            boolean f = verifica();
+
+            if (f == false) {
+
+                stmt.execute("INSERT INTO CONFIG(ID, SQL) VALUES (1,'teste');");
+                stmt.execute("INSERT INTO CONFIG(ID, SQL) VALUES (2, 'teste');");
+
+                //    JOptionPane.showMessageDialog(null, "Configuração do servidor efetuada!\n Clique em ok e inicie o software novamente");
+            }
+
+            stmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConfigSQlite.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-   
-   public boolean verifica() throws SQLException{
-   boolean x;
-      // lendo os registros
-            PreparedStatement stmt = sqlite.prepareStatement("select * from CONFIG");
-            ResultSet resultSet = stmt.executeQuery();
 
-            if (resultSet.next()) {
-               /*Integer id = resultSet.getInt("ID");
+    public boolean verifica() throws SQLException {
+        boolean x;
+        // lendo os registros
+        PreparedStatement stmt = sqlite.prepareStatement("select * from CONFIG");
+        ResultSet resultSet = stmt.executeQuery();
+
+        if (resultSet.next()) {
+            /*Integer id = resultSet.getInt("ID");
                 String ip = resultSet.getString("IP");
                 String base = resultSet.getString("BASE");
                 String usuario = resultSet.getString("USUARIO");
@@ -71,45 +65,43 @@ public class ConfigSQlite {
             
                System.out.println( "ID - " + id + "\nIP - " +ip + "\n"
                        + "BASE -" + base + "\nUsuario - " + usuario + "\n senha - " + senha);*/
-                x = true;
-            }else{
-            
-                x = false;
-                
-            }
-            
-            stmt.close();
-   return x;
-   
-   }
-   
-   
-      public String buscarConfig(String id) throws SQLException{
-   
-      String sql = "select sql from CONFIG where id=?";
-                 PreparedStatement stmt = sqlite.prepareStatement(sql);
-                 String resultado = null;
-           
-            stmt.setString(1, id);
-          
-            ResultSet rs = stmt.executeQuery();
+            x = true;
+        } else {
 
-            if (rs.next()) {
-                
-              resultado = rs.getString("SQL");
-            
-            }
-            stmt.close();
-            
-            return resultado;
-    
-   }
-   
-  
-   public void alterarConfig(String texto, String id) {
+            x = false;
+
+        }
+
+        stmt.close();
+        return x;
+
+    }
+
+    public String buscarConfig(String id) throws SQLException {
+
+        String sql = "select sql from CONFIG where id=?";
+        PreparedStatement stmt = sqlite.prepareStatement(sql);
+        String resultado = null;
+
+        stmt.setString(1, id);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+
+            resultado = rs.getString("SQL");
+
+        }
+        stmt.close();
+
+        return resultado;
+
+    }
+
+    public void alterarConfig(String texto, String id) {
         try {
 
-            String sql = "UPDATE CONFIG set SQL=? WHERE ID=?" ; 
+            String sql = "UPDATE CONFIG set SQL=? WHERE ID=?";
 
             PreparedStatement stmt = sqlite.prepareStatement(sql);
             stmt.setString(1, texto);
@@ -117,12 +109,8 @@ public class ConfigSQlite {
 
             stmt.executeUpdate();
             stmt.close();
-            
-            
-            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso");
-         
 
-           
+            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso");
 
         } catch (SQLException e) {
 
@@ -131,5 +119,5 @@ public class ConfigSQlite {
         }
 
     }
-    
+
 }

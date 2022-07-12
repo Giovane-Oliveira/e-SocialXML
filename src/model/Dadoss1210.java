@@ -10,7 +10,7 @@ package model;
  * @author giovane.oliveira
  */
 public class Dadoss1210 {
-    
+
     String PERIODO, C9V_CPF, DT_BAIXA, E5_VALOR, EMISSAO, F1_INSS, E2_FORNECE, E2_NOMFOR, NUMDOC, ideDmDev;
 
     public String getPERIODO() {
@@ -92,7 +92,5 @@ public class Dadoss1210 {
     public void setIdeDmDev(String ideDmDev) {
         this.ideDmDev = ideDmDev;
     }
-    
-    
-    
+
 }

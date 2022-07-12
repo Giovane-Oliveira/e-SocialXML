@@ -13,17 +13,15 @@ import java.sql.*;
  * @author giovane.oliveira
  */
 public class ConnectionFactory {
-   
-   public static java.sql.Connection getConnection(){
-try{
 
-return DriverManager.getConnection("jdbc:sqlserver://192.168.200.30:1433;databaseName=protheusPRD;integratedSecurity=false;encrypt=true;trustServerCertificate=true;user=siga;password=Totvs2010");
+    public static java.sql.Connection getConnection() {
+        try {
 
+            return DriverManager.getConnection("jdbc:sqlserver://192.168.200.30:1433;databaseName=protheusPRD;integratedSecurity=false;encrypt=true;trustServerCertificate=true;user=siga;password=Totvs2010");
 
-}catch(Exception erro){
-throw new RuntimeException(erro);
-}
+        } catch (Exception erro) {
+            throw new RuntimeException(erro);
+        }
     }
 
-  
-} 
+}

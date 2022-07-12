@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Dadoss12;
 import model.Dadoss1210;
 
-
 /**
  *
  * @author giovane.oliveira
@@ -28,29 +27,27 @@ import model.Dadoss1210;
 public class main extends javax.swing.JFrame {
 
     static boolean checkbox12, checkbox1210;
-   
 
     /**
      * Creates new form main
      */
     public main() throws SQLException {
         initComponents();
-         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.png")));
-         new ConfigSQlite();
-         String resultado = new  ConfigSQlite().buscarConfig("1");
-         String resultado2 = new  ConfigSQlite().buscarConfig("2");
-         if(resultado.equals("teste")){
-             
-         }else if(resultado2.equals("teste")){
-         
-         
-         }else{
-         
-                sqldb.setText(new  ConfigSQlite().buscarConfig("1"));
-                  sqldb1.setText(new  ConfigSQlite().buscarConfig("2"));
-         
-         }
-     
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo.png")));
+        new ConfigSQlite();
+        String resultado = new ConfigSQlite().buscarConfig("1");
+        String resultado2 = new ConfigSQlite().buscarConfig("2");
+        if (resultado.equals("teste")) {
+
+        } else if (resultado2.equals("teste")) {
+
+        } else {
+
+            sqldb.setText(new ConfigSQlite().buscarConfig("1"));
+            sqldb1.setText(new ConfigSQlite().buscarConfig("2"));
+
+        }
+
     }
 
     /**
@@ -526,19 +523,17 @@ public class main extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,19 +567,17 @@ public class main extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btncon1210)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btncon1210)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,10 +646,10 @@ public class main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Double e2valor = 0.0,f1valmerc = 0.0,f1baseins = 0.0,f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0; //totalizadores
+        Double e2valor = 0.0, f1valmerc = 0.0, f1baseins = 0.0, f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0; //totalizadores
         int count = 0;
         DecimalFormat df = new DecimalFormat("0.00");
-        
+
         if (dataInicial.getText().replace("/", "").trim().isEmpty() || dataFinal.getText().replace("/", "").trim().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Informe a data inicial e final");
@@ -674,8 +667,8 @@ public class main extends javax.swing.JFrame {
                 f1valmerc = f1valmerc + Double.parseDouble(c.getF1_VALMERC());
                 f1baseins = f1baseins + Double.parseDouble(c.getF1_BASEINS().trim());
                 f1inss = f1inss + Double.parseDouble(c.getF1_INSS().trim());
-                 f1valsest = f1valsest + Double.parseDouble(c.getF1_VALSEST().trim());
-                 count = count + 1;
+                f1valsest = f1valsest + Double.parseDouble(c.getF1_VALSEST().trim());
+                count = count + 1;
                 dadoss12.addRow(new Object[]{
                     c.getE2_FORNECE(),
                     c.getE2_NOMFOR(),
@@ -684,7 +677,7 @@ public class main extends javax.swing.JFrame {
                     c.getF1_VALMERC().replace('.', ','),
                     c.getF1_BASEINS().replace('.', ','),
                     c.getF1_VALSEST().replace('.', ','),
-                    c.getF1_INSS().replace('.',','),
+                    c.getF1_INSS().replace('.', ','),
                     c.getE2_EMISSAO(),
                     c.getE2_VENCREA(),
                     c.getC9V_ID(),
@@ -701,13 +694,13 @@ public class main extends javax.swing.JFrame {
                     c.getA2_NOME()
                 });
             }
-            
-             te2valor.setText("" + String.valueOf(df.format(e2valor/count)).replace('.', ','));
-        tf1valmerc.setText("" + String.valueOf(df.format(f1valmerc/count)).replace('.', ','));
-         tf1baseins.setText("" + String.valueOf(df.format(f1baseins/count)).replace('.', ','));
-          tf1inss.setText("" + String.valueOf(df.format(f1inss/count)).replace('.', ','));
-           tf1valsest.setText("" + String.valueOf(df.format(f1valsest/count)).replace('.', ','));
-              
+
+            te2valor.setText("" + String.valueOf(df.format(e2valor / count)).replace('.', ','));
+            tf1valmerc.setText("" + String.valueOf(df.format(f1valmerc / count)).replace('.', ','));
+            tf1baseins.setText("" + String.valueOf(df.format(f1baseins / count)).replace('.', ','));
+            tf1inss.setText("" + String.valueOf(df.format(f1inss / count)).replace('.', ','));
+            tf1valsest.setText("" + String.valueOf(df.format(f1valsest / count)).replace('.', ','));
+
         }
 
 
@@ -730,15 +723,13 @@ public class main extends javax.swing.JFrame {
 
             do {
 
-                    IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                    TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
-                } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
+                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
+                TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
+            } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
-            
             try {
                 obj.gerarxml12(lista, IndicadorRetificacao, TipoAmbiente);
-                
-                
+
                 /* for (Dadoss12 c : lista) {
                 
                 try {
@@ -749,7 +740,7 @@ public class main extends javax.swing.JFrame {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 }*/
-                /*  try {
+ /*  try {
                 obj.gerarxml("teste");
                 
                 }
@@ -770,7 +761,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Gerarxml2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Gerarxml2ActionPerformed
-            // TODO add your handling code here:
+        // TODO add your handling code here:
         int n = 1;
         String TipoAmbiente;
         String IndicadorRetificacao;
@@ -786,22 +777,18 @@ public class main extends javax.swing.JFrame {
 
             do {
 
-                    IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                    TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
-                } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
+                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
+                TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
+            } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
-            
-            
+            try {
+                obj.gerarxml1210(lista2, IndicadorRetificacao, TipoAmbiente);
 
-                    try {
-                        obj.gerarxml1210(lista2, IndicadorRetificacao, TipoAmbiente);
-                        
+            } catch (IOException ex) {
+                n = 0;
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                    } catch (IOException ex) {
-                        n = 0;
-                        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-              
             /*  try {
             obj.gerarxml("teste");
         
@@ -818,38 +805,35 @@ public class main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Arquivo gerado com sucesso");
 
         }
-       
 
-                
 
-        
     }//GEN-LAST:event_Gerarxml2ActionPerformed
 
     private void Consultar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Consultar2ActionPerformed
-      Double e2valor = 0.0,f1valmerc = 0.0,f1baseins = 0.0,f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0;
-      int count = 0; //totalizadores
+        Double e2valor = 0.0, f1valmerc = 0.0, f1baseins = 0.0, f1inss = 0.0, e5valor = 0.0, f1inss2 = 0.0, f1valsest = 0.0;
+        int count = 0; //totalizadores
         DecimalFormat df = new DecimalFormat("0.00");
-        
+
         if (dataInicial2.getText().replace("/", "").trim().isEmpty() || dataFinal2.getText().replace("/", "").trim().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Informe a data inicial e final");
 
         } else {
-      
+
             ReqDAO obj = new ReqDAO();
             List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial2.getText(), dataFinal2.getText());
             DefaultTableModel dadoss1210 = (DefaultTableModel) tabela1210.getModel();
             tabela1210.setAutoResizeMode(tabela1210.AUTO_RESIZE_OFF);
             dadoss1210.setNumRows(0);
             for (Dadoss1210 c : lista2) {
-                count  = count  +1;
-            e5valor = e5valor + Double.parseDouble(c.getE5_VALOR().trim());
-            f1inss2 = f1inss2 + Double.parseDouble(c.getF1_INSS().trim());
+                count = count + 1;
+                e5valor = e5valor + Double.parseDouble(c.getE5_VALOR().trim());
+                f1inss2 = f1inss2 + Double.parseDouble(c.getF1_INSS().trim());
                 dadoss1210.addRow(new Object[]{
                     c.getPERIODO(),
                     c.getC9V_CPF(),
                     c.getDT_BAIXA(),
-                    c.getE5_VALOR().replace('.',','),
+                    c.getE5_VALOR().replace('.', ','),
                     c.getEMISSAO(),
                     c.getF1_INSS().replace('.', ','),
                     c.getE2_FORNECE(),
@@ -859,8 +843,8 @@ public class main extends javax.swing.JFrame {
 
                 });
             }
-  te5valor.setText("" + String.valueOf(df.format(e5valor/count)).replace('.',','));
-  tf1inss2.setText("" + String.valueOf(df.format(f1inss2/count)).replace('.',','));
+            te5valor.setText("" + String.valueOf(df.format(e5valor / count)).replace('.', ','));
+            tf1inss2.setText("" + String.valueOf(df.format(f1inss2 / count)).replace('.', ','));
         }
 
 
@@ -868,36 +852,31 @@ public class main extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        if(sqldb.getText().trim().isEmpty()){
-        
+
+        if (sqldb.getText().trim().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "Preencha o campo");
-        
-        }else{
-        
-              new ConfigSQlite().alterarConfig(sqldb.getText(), "1");
+
+        } else {
+
+            new ConfigSQlite().alterarConfig(sqldb.getText(), "1");
         }
-        
-      
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btncon1210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncon1210ActionPerformed
         // TODO add your handling code here:
-        
-        
-           
-        if(sqldb1.getText().trim().isEmpty()){
-        
+
+        if (sqldb1.getText().trim().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "Preencha o campo");
-        
-        }else{
-        
-              new ConfigSQlite().alterarConfig(sqldb1.getText(), "2");
+
+        } else {
+
+            new ConfigSQlite().alterarConfig(sqldb1.getText(), "2");
         }
-        
+
     }//GEN-LAST:event_btncon1210ActionPerformed
 
     /**

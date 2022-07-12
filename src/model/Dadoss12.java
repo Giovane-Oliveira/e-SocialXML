@@ -10,11 +10,11 @@ package model;
  * @author giovane.oliveira
  */
 public class Dadoss12 {
-    
-     String E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC,
-           F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA, 
-           C9V_ID, F1_FILIAL, ideDmDev,C9_NIS, C9V_CPF, PERAPUR,DT_NASC, CBO, DT_NASC_A2, PIS_A2,
-           CPF_A2,  A2_NOME;
+
+    String E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC,
+            F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA,
+            C9V_ID, F1_FILIAL, ideDmDev, C9_NIS, C9V_CPF, PERAPUR, DT_NASC, CBO, DT_NASC_A2, PIS_A2,
+            CPF_A2, A2_NOME;
 
     public String getCPF_A2() {
         return CPF_A2;
@@ -192,7 +192,4 @@ public class Dadoss12 {
         this.A2_NOME = A2_NOME;
     }
 
-
-  
-   
 }

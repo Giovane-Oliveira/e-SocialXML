@@ -222,7 +222,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TOTALIZADORES:"/>
+                <Property name="text" type="java.lang.String" value="M&#xc9;DIA:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -555,7 +555,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TOTALIZADORES:"/>
+                <Property name="text" type="java.lang.String" value="M&#xc9;DIA:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">

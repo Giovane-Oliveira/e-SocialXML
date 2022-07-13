@@ -145,7 +145,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("TOTALIZADORES:");
+        jLabel6.setText("MÉDIA:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("E2_VALOR:");
@@ -333,7 +333,7 @@ public class main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("S-1200", jPanel3);
 
-        jLabel8.setText("TOTALIZADORES:");
+        jLabel8.setText("MÉDIA:");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("E5_VALOR:");

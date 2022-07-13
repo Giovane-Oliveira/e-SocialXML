@@ -266,8 +266,17 @@ public class ReqDAO {
         String RSenat = "8352";
 
         while (x < lista.size()) {
-
-            if (x < lista.size() - 2) {
+       
+            if(lista.get(x).getC9V_CPF() == null || lista.get(x).getC9V_ID() == null || lista.get(x).getC9_NIS() == null){
+               
+          System.out.println("Aqui " + lista.get(x).getC9V_CPF());
+          
+          x = x + 1;
+                
+            
+            }else{
+                
+                 if (x < lista.size() - 2) {
 
                 while (lista.get(x).getE2_FORNECE().replaceAll("\\s+", "").equals(lista.get(x + 1).getE2_FORNECE())) {
 
@@ -700,7 +709,15 @@ public class ReqDAO {
 
             x = x + 1;
 
+            
+        
+            }
+        
+        
         }
+            
+
+       
 
     }
 
@@ -723,7 +740,13 @@ public class ReqDAO {
         String arquivo, infopagamento = null, cabecalho;
 
         while (x < lista.size()) {
-
+            
+            if(lista.get(x).getC9V_CPF() == null){
+            
+                x = x + 1;
+            
+            }else{
+            
             cabecalho = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtPgtos/v_S_01_00_00\">\n"
                     + "<evtPgtos Id=\"ID100350387000000" + dtf.format(LocalDateTime.now()).replace("/", "").replace(":", "").replaceAll("\\s+", "") + numero + "2022" + "\">\n"
                     + "<ideEvento>\n"
@@ -824,6 +847,9 @@ public class ReqDAO {
 
 //"</eSocial>"
             x = x + 1;
+            
+            }
+
         }
 
     }

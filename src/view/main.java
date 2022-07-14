@@ -7,6 +7,7 @@ package view;
 
 import jdbc.ConfigSQlite;
 import dao.ReqDAO;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Dadoss12;
 import model.Dadoss1210;
@@ -30,9 +32,6 @@ public class main extends javax.swing.JFrame {
     static boolean checkbox12, checkbox1210;
     static List listaSelected = new ArrayList();
     static List listaSelected2 = new ArrayList();
-   
-
-          
 
     /**
      * Creates new form main
@@ -44,59 +43,59 @@ public class main extends javax.swing.JFrame {
         String resultado = new ConfigSQlite().buscarConfig("1");
         String resultado2 = new ConfigSQlite().buscarConfig("2");
         if (resultado.equals("teste")) {
-            
-            sqldb.setText("SELECT E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC, F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA, C9V_ID, E2_FORNECE+F1_DOC ideDmDev, F1_FILIAL, C9V_NIS, C9V_CPF, SUBSTRING(E2_EMISSAO,1,4)+'-'+SUBSTRING(E2_EMISSAO,5,2) AS PERAPUR, SUBSTRING(C9V_DTNASC,1,4)+'-'+SUBSTRING(C9V_DTNASC,5,2)+'-'+SUBSTRING(C9V_DTNASC,7,2) DT_NASC,\n" +
-"CASE E2_FORNECE WHEN '201793' THEN '715615'\n" +
-"WHEN '202066' THEN '715615'\n" +
-"WHEN '201827' THEN '914410'\n" +
-"WHEN '202304' THEN '914410'\n" +
-"WHEN '201709' THEN '914405'\n" +
-"ELSE A2.A2_CBO\n" +
-"END CBO,\n" +
-"SUBSTRING(A2.A2_DTNASC,1,4)+'-'+SUBSTRING(A2.A2_DTNASC,5,2)+'-'+SUBSTRING(A2.A2_DTNASC,7,2) DT_NASC_A2,\n" +
-"A2.A2_CODINSS PIS_A2,\n" +
-"A2.A2_CGC CPF_A2,\n" +
-"A2.A2_NOME\n" +
-"FROM SE2010\n" +
-"LEFT OUTER JOIN SF1010 ON F1_FILIAL = E2_FILIAL AND F1_FORNECE = E2_FORNECE AND F1_LOJA = E2_LOJA AND E2_NUM = F1_DOC AND SF1010.D_E_L_E_T_ = ''\n" +
-"LEFT JOIN SA2010 A2 ON E2_FORNECE=A2.A2_COD AND E2_LOJA=A2.A2_LOJA AND A2.D_E_L_E_T_ = ''\n" +
-"LEFT OUTER JOIN C9V010 ON (C9V_CPF = CASE E2_FORNECE\n" +
-"WHEN '201827' THEN '01411974042'\n" +
-"WHEN '201793' THEN '29959446034'\n" +
-"WHEN '202066' THEN '37697170078'\n" +
-"WHEN '202304' THEN '10873237978'\n" +
-"WHEN '201709' THEN '05908963933'\n" +
-"ELSE A2_CGC END) AND C9V010.D_E_L_E_T_ = '' AND C9V_NOMEVE = 'TAUTO' WHERE E2_TIPO='NF'\n" +
-"AND E2_NATUREZ in('703','705','720','721','722','725','726')\n" +
-"--AND E2_PREFIXO LIKE '%U'\n" +
-"AND SE2010.D_E_L_E_T_ = ''\n" +
-"AND ( A2.A2_CODINSS <> '' OR A2.A2_CODNIT <> '' )\n" +
-"AND E2_EMISSAO BETWEEN ? AND ?\n" +
-"AND E2_FORNECE NOT IN('202118','202072')\n" +
-"ORDER BY 1");
 
-        } 
-        
+            sqldb.setText("SELECT E2_FORNECE, E2_NOMFOR, E2_VALOR, F1_DOC, F1_VALMERC, F1_BASEINS, F1_VALSEST, F1_INSS, E2_EMISSAO, E2_VENCREA, C9V_ID, E2_FORNECE+F1_DOC ideDmDev, F1_FILIAL, C9V_NIS, C9V_CPF, SUBSTRING(E2_EMISSAO,1,4)+'-'+SUBSTRING(E2_EMISSAO,5,2) AS PERAPUR, SUBSTRING(C9V_DTNASC,1,4)+'-'+SUBSTRING(C9V_DTNASC,5,2)+'-'+SUBSTRING(C9V_DTNASC,7,2) DT_NASC,\n"
+                    + "CASE E2_FORNECE WHEN '201793' THEN '715615'\n"
+                    + "WHEN '202066' THEN '715615'\n"
+                    + "WHEN '201827' THEN '914410'\n"
+                    + "WHEN '202304' THEN '914410'\n"
+                    + "WHEN '201709' THEN '914405'\n"
+                    + "ELSE A2.A2_CBO\n"
+                    + "END CBO,\n"
+                    + "SUBSTRING(A2.A2_DTNASC,1,4)+'-'+SUBSTRING(A2.A2_DTNASC,5,2)+'-'+SUBSTRING(A2.A2_DTNASC,7,2) DT_NASC_A2,\n"
+                    + "A2.A2_CODINSS PIS_A2,\n"
+                    + "A2.A2_CGC CPF_A2,\n"
+                    + "A2.A2_NOME\n"
+                    + "FROM SE2010\n"
+                    + "LEFT OUTER JOIN SF1010 ON F1_FILIAL = E2_FILIAL AND F1_FORNECE = E2_FORNECE AND F1_LOJA = E2_LOJA AND E2_NUM = F1_DOC AND SF1010.D_E_L_E_T_ = ''\n"
+                    + "LEFT JOIN SA2010 A2 ON E2_FORNECE=A2.A2_COD AND E2_LOJA=A2.A2_LOJA AND A2.D_E_L_E_T_ = ''\n"
+                    + "LEFT OUTER JOIN C9V010 ON (C9V_CPF = CASE E2_FORNECE\n"
+                    + "WHEN '201827' THEN '01411974042'\n"
+                    + "WHEN '201793' THEN '29959446034'\n"
+                    + "WHEN '202066' THEN '37697170078'\n"
+                    + "WHEN '202304' THEN '10873237978'\n"
+                    + "WHEN '201709' THEN '05908963933'\n"
+                    + "ELSE A2_CGC END) AND C9V010.D_E_L_E_T_ = '' AND C9V_NOMEVE = 'TAUTO' WHERE E2_TIPO='NF'\n"
+                    + "AND E2_NATUREZ in('703','705','720','721','722','725','726')\n"
+                    + "--AND E2_PREFIXO LIKE '%U'\n"
+                    + "AND SE2010.D_E_L_E_T_ = ''\n"
+                    + "AND ( A2.A2_CODINSS <> '' OR A2.A2_CODNIT <> '' )\n"
+                    + "AND E2_EMISSAO BETWEEN ? AND ?\n"
+                    + "AND E2_FORNECE NOT IN('202118','202072')\n"
+                    + "ORDER BY 1");
+
+        }
+
         if (resultado2.equals("teste")) {
-            
-            sqldb1.setText("SELECT SUBSTRING(E5_DATA,1,4)+'-'+SUBSTRING(E5_DATA,5,2) PERIODO, C9V_CPF, SUBSTRING(E5_DATA ,1,4)+'-'+SUBSTRING(E5_DATA ,5,2)+'-'+SUBSTRING(E5_DATA ,7,2) DT_BAIXA ,E5_VALOR, SUBSTRING(E2_EMISSAO ,1,4)+'-'+SUBSTRING(E2_EMISSAO ,5,2)+'-'+SUBSTRING(E2_EMISSAO ,7,2) EMISSAO ,F1_INSS,E2_FORNECE, E2_NOMFOR,F1_DOC NUMDOC, E2_FORNECE+F1_DOC ideDmDev\n" +
-"FROM SE5010 INNER JOIN SE2010 ON E2_NUM = E5_NUMERO AND E2_FORNECE = E5_CLIFOR AND E2_LOJA = E5_LOJA AND SE2010.D_E_L_E_T_ = ''\n" +
-"LEFT OUTER JOIN SF1010 ON F1_FILIAL = E2_FILIAL AND F1_FORNECE = E2_FORNECE AND F1_LOJA = E2_LOJA AND E2_NUM = F1_DOC AND SF1010.D_E_L_E_T_ = ''\n" +
-"LEFT OUTER JOIN SA2010 ON A2_COD = F1_FORNECE AND A2_LOJA = F1_LOJA AND SA2010.D_E_L_E_T_ = ''\n" +
-"LEFT OUTER JOIN C9V010 ON (C9V_CPF = CASE E2_FORNECE WHEN '201827' THEN '01411974042'\n" +
-"WHEN '201793' THEN '29959446034'\n" +
-"WHEN '202066' THEN '37697170078'\n" +
-"WHEN '202304' THEN '10873237978'\n" +
-"WHEN '201709' THEN '05908963933'\n" +
-"ELSE A2_CGC END) AND C9V010.D_E_L_E_T_ = '' AND C9V_NOMEVE = 'TAUTO' WHERE E2_TIPO='NF'\n" +
-"AND E5_NATUREZ in ('703','705','720','721','722','725','726')\n" +
-"AND E5_DATA BETWEEN ? AND ?\n" +
-"--AND E5_PREFIXO LIKE '%U'\n" +
-"AND SE5010.D_E_L_E_T_ = ''\n" +
-"AND (A2_CODINSS <> '' OR A2_CODNIT <> '')\n" +
-"AND E2_FORNECE NOT IN('202118','202072')\n" +
-"-- AND A2_CBO IN ('622010','514320','782310','715615','252215')\n" +
-"ORDER BY 1,7;");
+
+            sqldb1.setText("SELECT SUBSTRING(E5_DATA,1,4)+'-'+SUBSTRING(E5_DATA,5,2) PERIODO, C9V_CPF, SUBSTRING(E5_DATA ,1,4)+'-'+SUBSTRING(E5_DATA ,5,2)+'-'+SUBSTRING(E5_DATA ,7,2) DT_BAIXA ,E5_VALOR, SUBSTRING(E2_EMISSAO ,1,4)+'-'+SUBSTRING(E2_EMISSAO ,5,2)+'-'+SUBSTRING(E2_EMISSAO ,7,2) EMISSAO ,F1_INSS,E2_FORNECE, E2_NOMFOR,F1_DOC NUMDOC, E2_FORNECE+F1_DOC ideDmDev\n"
+                    + "FROM SE5010 INNER JOIN SE2010 ON E2_NUM = E5_NUMERO AND E2_FORNECE = E5_CLIFOR AND E2_LOJA = E5_LOJA AND SE2010.D_E_L_E_T_ = ''\n"
+                    + "LEFT OUTER JOIN SF1010 ON F1_FILIAL = E2_FILIAL AND F1_FORNECE = E2_FORNECE AND F1_LOJA = E2_LOJA AND E2_NUM = F1_DOC AND SF1010.D_E_L_E_T_ = ''\n"
+                    + "LEFT OUTER JOIN SA2010 ON A2_COD = F1_FORNECE AND A2_LOJA = F1_LOJA AND SA2010.D_E_L_E_T_ = ''\n"
+                    + "LEFT OUTER JOIN C9V010 ON (C9V_CPF = CASE E2_FORNECE WHEN '201827' THEN '01411974042'\n"
+                    + "WHEN '201793' THEN '29959446034'\n"
+                    + "WHEN '202066' THEN '37697170078'\n"
+                    + "WHEN '202304' THEN '10873237978'\n"
+                    + "WHEN '201709' THEN '05908963933'\n"
+                    + "ELSE A2_CGC END) AND C9V010.D_E_L_E_T_ = '' AND C9V_NOMEVE = 'TAUTO' WHERE E2_TIPO='NF'\n"
+                    + "AND E5_NATUREZ in ('703','705','720','721','722','725','726')\n"
+                    + "AND E5_DATA BETWEEN ? AND ?\n"
+                    + "--AND E5_PREFIXO LIKE '%U'\n"
+                    + "AND SE5010.D_E_L_E_T_ = ''\n"
+                    + "AND (A2_CODINSS <> '' OR A2_CODNIT <> '')\n"
+                    + "AND E2_FORNECE NOT IN('202118','202072')\n"
+                    + "-- AND A2_CBO IN ('622010','514320','782310','715615','252215')\n"
+                    + "ORDER BY 1,7;");
 
         } else {
 
@@ -105,9 +104,18 @@ public class main extends javax.swing.JFrame {
 
         }
 
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(Color.LIGHT_GRAY);
+
+        for (int i = 0; i < TabelaS12.getModel().getColumnCount(); i++) {
+            TabelaS12.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+
+        for (int i = 0; i < tabela1210.getModel().getColumnCount(); i++) {
+            tabela1210.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -807,8 +815,14 @@ public class main extends javax.swing.JFrame {
 
             do {
 
-                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
+                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 para arquivo original ou 2 para arquivo de retificação", "1");
+                TipoAmbiente = JOptionPane.showInputDialog("	Identificação do ambiente.\n"
+                        + "Valores válidos:\n"
+                        + "1 - Produção\n"
+                        + "2 - Produção restrita\n"
+                        + "7 - Validação (uso interno)\n"
+                        + "8 - Teste (uso interno)\n"
+                        + "9 - Desenvolvimento (uso interno)", "1");
             } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
             try {
@@ -874,9 +888,14 @@ public class main extends javax.swing.JFrame {
             List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial2.getText(), dataFinal2.getText());
 
             do {
-
-                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2 (PRÉ-PRODUÇÃO) para o Indicador Retificação:");
-                TipoAmbiente = JOptionPane.showInputDialog("Informe 1 (OFICIAL) ou 2(PRÉ-PRODUÇÃO) para o Tipo de Ambiente:");
+                IndicadorRetificacao = JOptionPane.showInputDialog("Informe 1 para arquivo original ou 2 para arquivo de retificação", "1");
+                TipoAmbiente = JOptionPane.showInputDialog("	Identificação do ambiente.\n"
+                        + "Valores válidos:\n"
+                        + "1 - Produção\n"
+                        + "2 - Produção restrita\n"
+                        + "7 - Validação (uso interno)\n"
+                        + "8 - Teste (uso interno)\n"
+                        + "9 - Desenvolvimento (uso interno)", "1");
             } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
             try {
@@ -1000,7 +1019,13 @@ public class main extends javax.swing.JFrame {
         String doc = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString();
         int pos = TabelaS12.getSelectedRow();
 
-        // System.out.println("dsadad " + TabelaS12.getRowCount());
+        if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11) == null) {
+
+            // System.out.println("C9V_ID:  " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11));  
+            TabelaS12.setValueAt(true, TabelaS12.getSelectedRow(), 0);
+
+        }
+
         if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false")) {
 
             listaSelected.add(TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString());
@@ -1045,6 +1070,13 @@ public class main extends javax.swing.JFrame {
         String checked = tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString();
         String doc = tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString();
         int pos = tabela1210.getSelectedRow();
+
+        if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 2) == null) {
+
+            // System.out.println("CPF:  " + tabela1210.getValueAt(tabela1210.getSelectedRow(), 2));  
+            tabela1210.setValueAt(true, tabela1210.getSelectedRow(), 0);
+
+        }
 
         // System.out.println("dsadad " + TabelaS12.getRowCount());
         if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false")) {

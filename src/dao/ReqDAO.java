@@ -252,6 +252,7 @@ public class ReqDAO {
     public void gerarxml12(List<Dadoss12> lista, String IndicadorRetificacao, String TipoAmbiente) throws IOException {
 
         int x = 0;
+           String not = "";
 
         Random random = new Random();
         int numero = random.nextInt();
@@ -265,11 +266,16 @@ public class ReqDAO {
         String Rsest = "8347";
         String RSenat = "8352";
 
-        while (x < lista.size()) {
+        while (x < lista.size()) {   
+                  /* if(lista.get(x).getE2_VALOR().trim().equals(not.trim())) {
+                       
+                       System.out.println("Feitoria "  +  lista.get(x).getE2_VALOR().trim() + " " + not);
+                   
+                   }*/
        
             if(lista.get(x).getC9V_CPF() == null || lista.get(x).getC9V_ID() == null || lista.get(x).getC9_NIS() == null){
                
-          System.out.println("Aqui " + lista.get(x).getC9V_CPF());
+         // System.out.println("Aqui 2.0  " + lista.get(x).getC9V_CPF());
           
           x = x + 1;
                 
@@ -277,8 +283,9 @@ public class ReqDAO {
             }else{
                 
                  if (x < lista.size() - 2) {
+                                   
 
-                while (lista.get(x).getE2_FORNECE().replaceAll("\\s+", "").equals(lista.get(x + 1).getE2_FORNECE())) {
+                while (lista.get(x).getE2_FORNECE().replaceAll("\\s+", "").equals(lista.get(x + 1).getE2_FORNECE()) || lista.get(x).getF1_DOC().toString().replaceAll("\\s+", "").equals(not)) {
 
                     if (lista.get(x).getCBO().replaceAll("\\s+", "").contains("782310")) {
                         codCategoria = "712";

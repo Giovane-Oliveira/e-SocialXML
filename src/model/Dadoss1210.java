@@ -12,6 +12,18 @@ package model;
 public class Dadoss1210 {
 
     String PERIODO, C9V_CPF, DT_BAIXA, E5_VALOR, EMISSAO, F1_INSS, E2_FORNECE, E2_NOMFOR, NUMDOC, ideDmDev;
+    
+    Boolean marcado = true;
+
+    public Boolean getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(Boolean marcado) {
+        this.marcado = marcado;
+    }
+    
+    
 
     public String getPERIODO() {
         return PERIODO;

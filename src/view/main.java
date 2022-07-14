@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,8 @@ import model.Dadoss1210;
 public class main extends javax.swing.JFrame {
 
     static boolean checkbox12, checkbox1210;
+    static List listaSelected = new ArrayList();
+    static List listaSelected2 = new ArrayList();
 
     /**
      * Creates new form main
@@ -174,47 +177,58 @@ public class main extends javax.swing.JFrame {
 
         TabelaS12.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "E2_FORNECE", "E2_NOMFOR", "E2_VALOR", "F1_DOC", "F1_VALMERC", "F1_BASEINS", "F1_VALSEST", "FI_INSS", "E2_EMISSAO", "E2_VENCREA", "C9V_ID", "FI_FILIAL", "ideDmDev", "C9V_NIS", "C9V_CPF", "PERAPUR", "DT_NASC", "CBO", "DT_NASC_A2", "PIS_A2", "CPF_A2", "A2_NOME"
+                "?", "E2_FORNECE", "E2_NOMFOR", "E2_VALOR", "F1_DOC", "F1_VALMERC", "F1_BASEINS", "F1_VALSEST", "FI_INSS", "E2_EMISSAO", "E2_VENCREA", "C9V_ID", "FI_FILIAL", "ideDmDev", "C9V_NIS", "C9V_CPF", "PERAPUR", "DT_NASC", "CBO", "DT_NASC_A2", "PIS_A2", "CPF_A2", "A2_NOME"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TabelaS12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaS12MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaS12);
         if (TabelaS12.getColumnModel().getColumnCount() > 0) {
-            TabelaS12.getColumnModel().getColumn(0).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(1).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(2).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(3).setPreferredWidth(100);
@@ -225,7 +239,7 @@ public class main extends javax.swing.JFrame {
             TabelaS12.getColumnModel().getColumn(8).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(9).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(10).setPreferredWidth(100);
-            TabelaS12.getColumnModel().getColumn(12).setPreferredWidth(100);
+            TabelaS12.getColumnModel().getColumn(11).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(13).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(14).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(15).setPreferredWidth(100);
@@ -234,7 +248,8 @@ public class main extends javax.swing.JFrame {
             TabelaS12.getColumnModel().getColumn(18).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(19).setPreferredWidth(100);
             TabelaS12.getColumnModel().getColumn(20).setPreferredWidth(100);
-            TabelaS12.getColumnModel().getColumn(21).setPreferredWidth(200);
+            TabelaS12.getColumnModel().getColumn(21).setPreferredWidth(100);
+            TabelaS12.getColumnModel().getColumn(22).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -347,54 +362,66 @@ public class main extends javax.swing.JFrame {
 
         tabela1210.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "PERIODO", "C9V_CPF", "DT_BAIXA", "E5_VALOR", "EMISSAO", "F1_INSS", "E2_FORNECE", "E2_NOMFOR", "NUMDOC", "ideDmDev"
+                "?", "PERIODO", "C9V_CPF", "DT_BAIXA", "E5_VALOR", "EMISSAO", "F1_INSS", "E2_FORNECE", "E2_NOMFOR", "NUMDOC", "ideDmDev"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabela1210.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela1210MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela1210);
         if (tabela1210.getColumnModel().getColumnCount() > 0) {
-            tabela1210.getColumnModel().getColumn(0).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(1).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(2).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(3).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(4).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(5).setPreferredWidth(100);
             tabela1210.getColumnModel().getColumn(6).setPreferredWidth(100);
-            tabela1210.getColumnModel().getColumn(7).setPreferredWidth(200);
-            tabela1210.getColumnModel().getColumn(8).setPreferredWidth(100);
-            tabela1210.getColumnModel().getColumn(9).setPreferredWidth(200);
+            tabela1210.getColumnModel().getColumn(7).setPreferredWidth(100);
+            tabela1210.getColumnModel().getColumn(8).setPreferredWidth(200);
+            tabela1210.getColumnModel().getColumn(9).setPreferredWidth(100);
+            tabela1210.getColumnModel().getColumn(10).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -670,6 +697,7 @@ public class main extends javax.swing.JFrame {
                 f1valsest = f1valsest + Double.parseDouble(c.getF1_VALSEST().trim());
                 count = count + 1;
                 dadoss12.addRow(new Object[]{
+                    c.getMarcado(),
                     c.getE2_FORNECE(),
                     c.getE2_NOMFOR(),
                     c.getE2_VALOR().replace('.', ','),
@@ -728,6 +756,20 @@ public class main extends javax.swing.JFrame {
             } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
             try {
+                for (int x = 0; x < lista.size(); x++) {
+
+                    for (int y = 0; y < listaSelected.size(); y++) {
+
+                        if (listaSelected.get(y).toString().equals(lista.get(x).getF1_DOC())) {
+
+                            lista.remove(x);
+
+                        }
+
+                    }
+
+                }
+
                 obj.gerarxml12(lista, IndicadorRetificacao, TipoAmbiente);
 
                 /* for (Dadoss12 c : lista) {
@@ -782,6 +824,21 @@ public class main extends javax.swing.JFrame {
             } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
 
             try {
+
+                for (int x = 0; x < lista2.size(); x++) {
+
+                    for (int y = 0; y < listaSelected2.size(); y++) {
+
+                        if (listaSelected2.get(y).toString().equals(lista2.get(x).getNUMDOC())) {
+
+                            lista2.remove(x);
+
+                        }
+
+                    }
+
+                }
+
                 obj.gerarxml1210(lista2, IndicadorRetificacao, TipoAmbiente);
 
             } catch (IOException ex) {
@@ -830,6 +887,7 @@ public class main extends javax.swing.JFrame {
                 e5valor = e5valor + Double.parseDouble(c.getE5_VALOR().trim());
                 f1inss2 = f1inss2 + Double.parseDouble(c.getF1_INSS().trim());
                 dadoss1210.addRow(new Object[]{
+                    c.getMarcado(),
                     c.getPERIODO(),
                     c.getC9V_CPF(),
                     c.getDT_BAIXA(),
@@ -878,6 +936,98 @@ public class main extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btncon1210ActionPerformed
+
+    private void TabelaS12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaS12MouseClicked
+        // TODO add your handling code here:
+        String checked = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString();
+        String fornecedor = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 1).toString();
+        String doc = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString();
+        int pos = TabelaS12.getSelectedRow();
+
+        // System.out.println("dsadad " + TabelaS12.getRowCount());
+        if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false")) {
+
+            listaSelected.add(TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString());
+            TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
+
+            System.out.println("Inserido " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString());
+
+        } else {
+
+            for (int x = 0; x < listaSelected.size(); x++) {
+
+                if (listaSelected.size() == 1) {
+
+                    if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString().equals(listaSelected.get(x).toString())) {
+
+                        System.out.println("Removido " + listaSelected.get(x));
+                        listaSelected.clear();
+
+                    }
+
+                } else {
+
+                    if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString().equals(listaSelected.get(x).toString())) {
+
+                        System.out.println("Removido " + listaSelected.get(x));
+                        listaSelected.remove(x);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        //  System.out.println("Aqui " + checked + " " + fornecedor + " " + doc);
+    }//GEN-LAST:event_TabelaS12MouseClicked
+
+    private void tabela1210MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela1210MouseClicked
+        // TODO add your handling code here:
+
+        String checked = tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString();
+        String doc = tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString();
+        int pos = tabela1210.getSelectedRow();
+
+        // System.out.println("dsadad " + TabelaS12.getRowCount());
+        if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false")) {
+
+            listaSelected2.add(tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString());
+            tabela1210.setValueAt(false, tabela1210.getSelectedRow(), 0);
+
+            System.out.println("Inserido " + tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString());
+
+        } else {
+
+            for (int x = 0; x < listaSelected2.size(); x++) {
+
+                if (listaSelected2.size() == 1) {
+
+                    if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString().equals(listaSelected2.get(x).toString())) {
+
+                        System.out.println("Removido " + listaSelected2.get(x));
+                        listaSelected2.clear();
+
+                    }
+
+                } else {
+
+                    if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString().equals(listaSelected2.get(x).toString())) {
+
+                        System.out.println("Removido " + listaSelected2.get(x));
+                        listaSelected2.remove(x);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+    }//GEN-LAST:event_tabela1210MouseClicked
 
     /**
      * @param args the command line arguments

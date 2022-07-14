@@ -16,6 +16,16 @@ public class Dadoss12 {
             C9V_ID, F1_FILIAL, ideDmDev, C9_NIS, C9V_CPF, PERAPUR, DT_NASC, CBO, DT_NASC_A2, PIS_A2,
             CPF_A2, A2_NOME;
 
+    public Boolean getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(Boolean marcado) {
+        this.marcado = marcado;
+    }
+    
+    Boolean marcado = true;
+
     public String getCPF_A2() {
         return CPF_A2;
     }

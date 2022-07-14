@@ -749,6 +749,26 @@ public class main extends javax.swing.JFrame {
 
             ReqDAO dao = new ReqDAO();
             List<Dadoss12> lista = dao.consultarDadosS12(dataInicial.getText(), dataFinal.getText());
+            
+            
+            
+              for(int x = 0; x < lista.size(); x++){
+            
+            
+            if (lista.get(x).getC9V_ID() == null) {
+
+      lista.get(x).setMarcado(false);
+
+        }
+        
+        }
+
+            
+            
+            
+            
+            
+            
             DefaultTableModel dadoss12 = (DefaultTableModel) TabelaS12.getModel();
             TabelaS12.setAutoResizeMode(TabelaS12.AUTO_RESIZE_OFF);
             dadoss12.setNumRows(0);
@@ -786,7 +806,8 @@ public class main extends javax.swing.JFrame {
                     c.getA2_NOME()
                 });
             }
-
+            
+     
             te2valor.setText("" + String.valueOf(df.format(e2valor / count)).replace('.', ','));
             tf1valmerc.setText("" + String.valueOf(df.format(f1valmerc / count)).replace('.', ','));
             tf1baseins.setText("" + String.valueOf(df.format(f1baseins / count)).replace('.', ','));
@@ -794,7 +815,6 @@ public class main extends javax.swing.JFrame {
             tf1valsest.setText("" + String.valueOf(df.format(f1valsest / count)).replace('.', ','));
 
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -954,6 +974,24 @@ public class main extends javax.swing.JFrame {
 
             ReqDAO obj = new ReqDAO();
             List<Dadoss1210> lista2 = obj.consultarDadosS1210(dataInicial2.getText(), dataFinal2.getText());
+            
+            
+                   
+              for(int x = 0; x < lista2.size(); x++){
+            
+            
+            if (lista2.get(x).getC9V_CPF() == null) {
+
+      lista2.get(x).setMarcado(false);
+
+        }
+        
+        }
+            
+            
+            
+            
+            
             DefaultTableModel dadoss1210 = (DefaultTableModel) tabela1210.getModel();
             tabela1210.setAutoResizeMode(tabela1210.AUTO_RESIZE_OFF);
             dadoss1210.setNumRows(0);
@@ -1015,18 +1053,23 @@ public class main extends javax.swing.JFrame {
     private void TabelaS12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaS12MouseClicked
         // TODO add your handling code here:
         String checked = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString();
-        String fornecedor = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 1).toString();
+        String pessoa = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 2).toString();
         String doc = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString();
         int pos = TabelaS12.getSelectedRow();
+        
+        
+ 
 
         if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11) == null) {
 
-            // System.out.println("C9V_ID:  " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11));  
-            TabelaS12.setValueAt(true, TabelaS12.getSelectedRow(), 0);
+            // System.out.println("C9V_ID:  " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11)); 
+            JOptionPane.showMessageDialog(null, "O documento de " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 2).toString()
+            + "está bloqueado para marcar. Pois o arquivo xml do mesmo, não será gerado por falta de informações.");
+            TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
 
         }
 
-        if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false")) {
+        else if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false")) {
 
             listaSelected.add(TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString());
             TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
@@ -1070,16 +1113,19 @@ public class main extends javax.swing.JFrame {
         String checked = tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString();
         String doc = tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString();
         int pos = tabela1210.getSelectedRow();
+        
 
         if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 2) == null) {
 
             // System.out.println("CPF:  " + tabela1210.getValueAt(tabela1210.getSelectedRow(), 2));  
-            tabela1210.setValueAt(true, tabela1210.getSelectedRow(), 0);
+             JOptionPane.showMessageDialog(null, "O documento de " + tabela1210.getValueAt(tabela1210.getSelectedRow(), 8).toString()
+            + "está bloqueado para marcar. Pois o arquivo xml do mesmo, não será gerado por falta de informações.");
+            tabela1210.setValueAt(false, tabela1210.getSelectedRow(), 0);
 
         }
 
         // System.out.println("dsadad " + TabelaS12.getRowCount());
-        if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false")) {
+       else if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false")) {
 
             listaSelected2.add(tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString());
             tabela1210.setValueAt(false, tabela1210.getSelectedRow(), 0);

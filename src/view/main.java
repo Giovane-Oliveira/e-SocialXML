@@ -834,7 +834,7 @@ public class main extends javax.swing.JFrame {
                         + "7 - Validação (uso interno)\n"
                         + "8 - Teste (uso interno)\n"
                         + "9 - Desenvolvimento (uso interno)", "1");
-            } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
+            } while (Integer.parseInt(TipoAmbiente) < 1 || Integer.parseInt(TipoAmbiente) > 9  || Integer.parseInt(IndicadorRetificacao) != 1 && Integer.parseInt(IndicadorRetificacao) != 2);
 
             try {
                 for (int x = 0; x < lista.size(); x++) {
@@ -907,7 +907,7 @@ public class main extends javax.swing.JFrame {
                         + "7 - Validação (uso interno)\n"
                         + "8 - Teste (uso interno)\n"
                         + "9 - Desenvolvimento (uso interno)", "1");
-            } while (!TipoAmbiente.equals("1") && !IndicadorRetificacao.equals("1") && !TipoAmbiente.equals("2") && !IndicadorRetificacao.equals("2"));
+            } while (Integer.parseInt(TipoAmbiente) < 1 || Integer.parseInt(TipoAmbiente) > 9  || Integer.parseInt(IndicadorRetificacao) != 1 && Integer.parseInt(IndicadorRetificacao) != 2);
 
             try {
 

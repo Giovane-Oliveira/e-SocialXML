@@ -286,6 +286,7 @@ public class main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaS12.getTableHeader().setReorderingAllowed(false);
         TabelaS12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabelaS12MouseClicked(evt);
@@ -635,7 +636,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Config S-1200", jPanel5);
@@ -1040,15 +1041,14 @@ public class main extends javax.swing.JFrame {
         String doc = TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString();
         int pos = TabelaS12.getSelectedRow();
 
-        if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11) == null) {
+        if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11) == null && TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).equals(true) ) {
 
-            // System.out.println("C9V_ID:  " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11)); 
-              TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
+            TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
             JOptionPane.showMessageDialog(null, "O documento de " + TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 2).toString()
                     + "está bloqueado para marcar. Pois o arquivo xml do mesmo, não será gerado por falta de informações.");
           
 
-        } else if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false")) {
+        } else if (TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 0).toString().equals("false") && TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 11) != null) {
 
             listaSelected.add(TabelaS12.getValueAt(TabelaS12.getSelectedRow(), 4).toString());
             TabelaS12.setValueAt(false, TabelaS12.getSelectedRow(), 0);
@@ -1093,7 +1093,7 @@ public class main extends javax.swing.JFrame {
         String doc = tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString();
         int pos = tabela1210.getSelectedRow();
 
-        if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 2) == null) {
+        if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 2) == null && tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).equals(true)) {
 
             // System.out.println("CPF:  " + tabela1210.getValueAt(tabela1210.getSelectedRow(), 2));  
             tabela1210.setValueAt(false, tabela1210.getSelectedRow(), 0);
@@ -1101,7 +1101,7 @@ public class main extends javax.swing.JFrame {
                     + "está bloqueado para marcar. Pois o arquivo xml do mesmo, não será gerado por falta de informações.");
 
         } // System.out.println("dsadad " + TabelaS12.getRowCount());
-        else if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false")) {
+        else if (tabela1210.getValueAt(tabela1210.getSelectedRow(), 0).toString().equals("false") && tabela1210.getValueAt(tabela1210.getSelectedRow(), 2) != null) {
 
             listaSelected2.add(tabela1210.getValueAt(tabela1210.getSelectedRow(), 9).toString());
             tabela1210.setValueAt(false, tabela1210.getSelectedRow(), 0);
